@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Med Central!</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/editfeedback.js"></script>
+  <script type="text/javascript" src="js/jquery.fly_sidemenu.js"></script>
+
+  <link href='css/fly_sidemenu.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/iwt-cw.css">
+  <link href="css/smart_tab_all.min.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="js/jquery.smartTab.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+  <link href="css/toast.style.css" rel="stylesheet">
+  <link href="css/toast.style.min.css" rel="stylesheet">
+  <script src="js/toast.script.js"></script>
+</head>
+
+<body>
+  <ul class="sidemenu">
+    <li><a href="registergp.html">Register for GP</a></li>
+    <li><a href="myrequests.html">My Requests</a></li>
+    <li><a href="registergp.html">View GP Details</a></li>
+    <li><a href="myrequests.html">Intray / Inbox (GP Admin)</a></li>
+    <li><a href="feedback.html">Feedback</a></li>
+    <li><a href="inboxnhsadmin.html">Intray / Inbox (NHS Admin)</a></li>
+  </ul>
+  <div class="pointer"></div>
+
+        <div id="smarttab">
+          <ul class="nav">
+             <li>
+                 <a class="nav-link">
+                   Provide Feedback for System/Functionality/GP/Person
+                 </a>
+             </li>
+          </ul>          
+
+          <div class="tab-content">
+            <h2>Update Your Feedback</h2>
+             <div id="tab-1" class="tab-pane" role="tabpanel">
+              <table>
+                <tr>
+                  <td><label for="type">Feedback On:</label></td>
+                  <td>
+                        <input type="radio" id="system" name="type" value="system">
+                        <label for="system">System</label>
+                        <input type="radio" id="functionality" name="type" value="functionality">
+                        <label for="functionality">Functionality</label>
+                        <input type="radio" id="gp" name="type" value="gp">
+                        <label for="gp">GP</label>
+                        <input type="radio" id="person" name="type" value="person">
+                        <label for="person">Person</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="feedback">Feedback:</label></td>
+                  <td><textarea id="feedback_edit" name="feedback_edit" rows="7" cols="100"></textarea></td>
+                </tr>
+                <tr>
+                  <td><label for="createdDate">Created Date:</label></td>
+                  <td><input type="text" id="createdDate_edit" name="createdDate_edit" disabled></textarea></td>
+                </tr>
+                <tr>
+                  <td><label for="lastModifiedDate">Last Modified Date:</label></td>
+                  <td><input type="text" id="lastModifiedDate_edit" name="lastModifiedDate_edit" disabled></textarea></td>
+                </tr>
+                <tr>
+                  <td><label for="status">Status:</label></td>
+                  <td><input type="text" id="status_edit" name="status_edit" disabled></textarea></td>
+                </tr>
+              </table>
+              <br />
+              <div id="error" style="color:red"></div>
+              <br />
+              <input type="button" id="cancelFeedback" value="Cancel">
+              <input type="button" id="deleteFeedback" value="Delete">
+              <input type="button" id="updateFeedback" value="Update">
+             </div>
+          </div>
+        </div>
+      </body>
+</html>

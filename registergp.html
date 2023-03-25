@@ -1,0 +1,396 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Med Central!</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery.fly_sidemenu.js"></script>
+
+  <link href='css/fly_sidemenu.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/iwt-cw.css">
+  <link href="css/smart_tab_all.min.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="js/jquery.smartTab.min.js"></script>
+  <script type="text/javascript" src="js/iwt-cw.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+  <ul class="sidemenu">
+    <li><a href="registergp.html">Register for GP</a></li>
+    <li><a href="myrequests.html">My Requests</a></li>
+    <li><a href="registergp.html">View GP Details</a></li>
+    <li><a href="myrequests.html">Intray / Inbox (GP Admin)</a></li>
+    <li><a href="feedback.html">Feedback</a></li>
+    <li><a href="inboxnhsadmin.html">Intray / Inbox (NHS Admin)</a></li>
+  </ul>
+  <div class="pointer"></div>
+  <h2>Register for GP</h2>
+
+        <div id="smarttab">
+          <ul class="nav">
+             <li>
+                 <a class="nav-link" href="#tab-1">
+                    Basic Information
+                 </a>
+             </li>
+             <li>
+                 <a class="nav-link" href="#tab-2">
+                    Health Information
+                 </a>
+             </li>
+             <li>
+                 <a class="nav-link" href="#tab-3">
+                  Family History
+                 </a>
+             </li>
+             <li>
+                 <a class="nav-link" href="#tab-4">
+                  Patient Profiling
+                 </a>
+             </li>
+              <li>
+                <a class="nav-link" href="#tab-5">
+                  Consent & Supplementary Questions
+                </a>
+            </li>
+          </ul>
+       
+          <div class="tab-content">
+             <div id="tab-1" class="tab-pane" role="tabpanel">
+              <table>
+                <tr>
+                <td><label for="forename">Forename:</label></td>
+                <td><input type="text" id="forename" name="forename"><br /></td>
+                <td><label for="surname">Surname:</label></td>
+                <td><input type="text" id="surname" name="surname"><br /></td>
+                </tr>
+                <tr>
+                  <td><label for="dob">Date of Birth:</label></td>
+                  <td><input type="text" id="dob" name="dob"></td>
+                  <td><label for="height">Height:</label></td>
+                  <td><input type="text" id="height" name="height"><br /></td>
+                  <td><label for="weight">Weight:</label></td>
+                  <td><input type="text" id="weight" name="weight"><br /></td>
+                </tr>
+                <tr>
+                  <td><label for="nhsno">NHS Number (if exists):</label></td>
+                  <td><input type="text" id="nhsno" name="nhsno"></td>
+                  <td><label for="towncountry">Town and Country of birth:</label></td>
+                  <td><input type="text" id="towncountry" name="towncountry"><br /></td>
+                </tr>
+                <tr>
+                  <td><label for="gender">Select Gender:</label></td>
+                  <td>
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="address">Address:</label></td>
+                  <td><textarea id="address" name="address" rows="4" cols="50"></textarea></td>
+                </tr>
+                <tr>
+                  <td><label for="postcode">Postcode:</label></td>
+                  <td><input type="text" id="postcode" name="postcode"></td>
+                  <td><label for="email">Email:</label></td>
+                  <td><input type="email" id="email" name="email"><br /></td>
+                </tr>
+              </table>
+
+             </div>
+             <div id="tab-2" class="tab-pane" role="tabpanel">
+              <table>
+                <tr>
+                <td><label for="diseases">1. Have you suffered from or with any of the following:</label></td>
+                <td><select name="diseases" id="diseases">
+                  <option value="heartattack">Heart Attack</option>
+                  <option value="diabetes">Diabetes</option>
+                  <option value="cancer">Cancer</option>
+                  <option value="hpb">High Blood Pressure</option>
+                  <option value="asthma">Asthma</option>
+                  <option value="stroke">Stroke</option>
+                  <option value="tia">TIA</option>
+                  <option value="mental">Mental Illness</option>
+                  <option value="copd">COPD</option>
+                </select><br /></td>
+                </tr>
+                <tr>
+                  <td><label for="remarks">If you suffer from any of the above illness, please provide details:</label></td>
+                  <td><textarea id="remarks" name="remarks" rows="4" cols="50"></textarea></td>
+                </tr>
+
+                <tr>
+                  <td><label for="operation">2a. Have you had any illness or operations in the past?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="operation" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="operation" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><label for="testedtb">2b. Have you been previously tested or treated in the UK for TB?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="testedtb" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="testedtb" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><label for="livedtb">2c. Have you ever lived for more than 6 months in a country with high incidence for TB?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="livedtb" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="livedtb" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><label for="smoke">3. Do you smoke?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="smoke" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="smoke" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><label for="alcohol">4. Do you drink alcohol?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="alcohol" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="alcohol" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><label for="disability">5. Do you consider yourself having any form of disability?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="disability" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="disability" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="disability">If so, please provide details:</label></td>
+                  <td><textarea id="disability" name="disability" rows="4" cols="50"></textarea></td>
+                </tr>
+
+                <tr>
+                  <td><label for="allergy">6) Are there any medicines or drugs that have disagreed with you or to which you are allergic?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="allergy" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="allergy" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="allergy">If so, please provide details:</label></td>
+                  <td><textarea id="allergy" name="allergy" rows="4" cols="50"></textarea></td>
+                </tr>
+
+                <tr>
+                  <td><label for="medicines">7) Are you taking any prescribed medicines currently?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="medicines" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="medicines" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="allergy">If so, please provide details:</label></td>
+                  <td><textarea id="allergy" name="allergy" rows="4" cols="50"></textarea></td>
+                </tr>
+
+                <tr>
+                  <td><label for="exercise">8. How often do you exercise per week?:</label></td>
+                  <td><select name="exercise" id="exercise">
+                    <option value="onceaweek">Once a week</option>
+                    <option value="threetimesormore">3 times or more</option>
+                    <option value="everyday">Everyday</option>
+                    <option value="hpb">High Blood Pressure</option>
+                    <option value="asthma">Asthma</option>
+                    <option value="stroke">Stroke</option>
+                    <option value="tia">TIA</option>
+                    <option value="mental">Mental Illness</option>
+                    <option value="copd">COPD</option>
+                  </select><br /></td>
+                  </tr>
+              </table>
+             </div>
+
+             <div id="tab-3" class="tab-pane" role="tabpanel">
+              <table>
+                    <tr>
+                    <td><label for="relativesillness">1. Have any of your close relatives suffered from any of the following illnesses?</label></td>
+                    <td><select name="relativesillness" id="relativesillness">
+                      <option value="heartattack">Heart Attack</option>
+                      <option value="heartdisease">Heart Disease</option>
+                      <option value="diabetes">Diabetes</option>
+                      <option value="stroke">Stroke or TIA</option>
+                      <option value="asthma">Asthma</option>
+                      <option value="hpn">High Blood Pressure</option>
+                      <option value="mental">Mental Illness</option>
+                      <option value="eczema">Eczema</option>
+                      <option value="epilepsy">Epilepsy</option>
+                      <option value="cancer">Cancer</option>
+                    </select><br /></td>
+                    </tr>
+                    <tr>
+                      <td><label for="relativesillness">If so, please provide details:</label></td>
+                      <td><textarea id="relativesillness" name="relativesillness" rows="4" cols="50"></textarea></td>
+                    </tr>
+                    <tr>
+                      <td><label for="carer">2. Are you are carer for an elderly or sick relative or friend?</label></td>
+                      <td>
+                        <input type="radio" id="yes" name="carer" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="carer" value="no">
+                        <label for="no">No</label>
+                      </td>
+                      </tr>
+                      <tr>
+                        <td><label for="carer">If so, please provide details:</label></td>
+                        <td><textarea id="carer" name="carer" rows="4" cols="50"></textarea></td>
+                      </tr>
+              </table>
+             </div>
+
+             <div id="tab-4" class="tab-pane" role="tabpanel">
+              <table>
+                <tr>
+                  <td><label for="englishspoken">1. Do you need support with Spoken English?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="englishspoken" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="englishspoken" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="englishwritten">2. Do you need support with Written English?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="englishwritten" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="englishwritten" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="englishfirst">3. Is English your first language?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="englishfirst" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="englishfirst" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="religion">4. Which religion do you follow or practice?:</label></td>
+                  <td><select name="religion" id="religion">
+                    <option value="buddism">Buddhism</option>
+                    <option value="christianity">Christianity</option>
+                    <option value="islam">Islam</option>
+                    <option value="hinduism">Hinduism</option>
+                    <option value="judaism">Judaism</option>
+                    <option value="sikhism">Sikhism</option>
+                    <option value="others">Others</option>
+                    <option value="noanswer">Do not wish to answer</option>
+                  </select><br /></td>
+                </tr>
+                <tr>
+                  <td><label for="ethnicgroup">5. To which of these ethnic groups do you feel you belong?</label></td>
+                  <td><select name="ethnicgroup" id="ethnicgroup">
+                    <option value="white">White</option>
+                    <option value="chinese">Chinese or other ethnic Group</option>
+                    <option value="black">Black or Black British</option>
+                    <option value="mixed">Mixed</option>
+                    <option value="asian">Asian or Asian British or Mixed</option>
+                    <option value="noanswer">Do not wish to answer</option>
+                  </select><br /></td>
+                </tr>
+              </table>
+             </div>
+
+            <div id="tab-5" class="tab-pane" role="tabpanel">
+              <table>
+                <tr>
+                  <td><label for="resident">Are you an ordinarily a resident in the UK?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="resident" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="resident" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="eea">Do you live in another EEA country, or have moved to the UK to study or retire, or live in the UK but work in another EEA member state?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="eea" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="eea" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="ehic">Do you have a non-UK European Health Insurance Card (EHIC) or a Provisional Replacement Certificate (PRC)?</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="ehic" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="ehic" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="smscomms">I give my consent to receive SMS text notifications for communication</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="smscomms" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="smscomms" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="emailcomms">I give my consent to receive Email notifications for communication</label></td>
+                  <td>
+                        <input type="radio" id="yes" name="emailcomms" value="yes">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" name="emailcomms" value="no">
+                        <label for="no">No</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="signature">Signature:</label></td>
+                  <td><input type="text" id="signature" name="signature"><br /></td>
+                  <td><label for="date">Date:</label></td>
+                  <td><input type="date" id="date" name="date"><br /></td>
+                  </tr>
+              </table>
+              <br />
+              <div id="error" style="color:red"></div>
+              <br />
+              <input type="button" id="cancel" value="Cancel">
+              <input type="button" id="submit" value="Submit">
+             </div>
+          </div>
+        </div>
+  </body>
+</html>

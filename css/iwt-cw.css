@@ -1,0 +1,7 @@
+#output td 
+{
+    height: 30px; 
+    width: 100px;
+    text-align: center; 
+    vertical-align: middle;
+}
