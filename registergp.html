@@ -8,6 +8,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/registergp.js"></script>
   <script type="text/javascript" src="js/jquery.fly_sidemenu.js"></script>
 
   <link href='css/fly_sidemenu.css' rel='stylesheet' type='text/css'>
@@ -55,8 +56,13 @@
                   Patient Profiling
                  </a>
              </li>
+             <li>
+              <a class="nav-link" href="#tab-5">
+               GP Selection
+              </a>
+             </li>
               <li>
-                <a class="nav-link" href="#tab-5">
+                <a class="nav-link" href="#tab-6">
                   Consent & Supplementary Questions
                 </a>
             </li>
@@ -330,7 +336,48 @@
               </table>
              </div>
 
-            <div id="tab-5" class="tab-pane" role="tabpanel">
+             <div id="tab-5" class="tab-pane" role="tabpanel">
+              <table>
+                <tr>
+                  <td><label for="currentborough">Current Borough:</label></td>
+                  <td><select name="currentborough" id="currentborough">
+                    <option value="Barking and Dagenham">Barking and Dagenham</option>
+                    <option value="Barnet">Barnet</option>
+                    <option value="Bexley">Bexley</option>
+                    <option value="Brent">Brent</option>
+                    <option value="Bromley">Bromley</option>
+                    <option value="Camden">Camden</option>
+                    <option value="Croydon">Croydon</option>
+                    <option value="Ealing">Ealing</option>
+                    <option value="Enfield">Enfield</option>
+                    <option value="Greenwich">Greenwich</option>
+                    <option value="Hackney">Hackney</option>
+                    <option value="Hammersmith and Fulham">Hammersmith and Fulham</option>
+                    <option value="Harrow">Harrow</option>
+                    <option value="Hillingdon">Hillingdon</option>
+                    <option value="Islington">Islington</option>
+                    <option value="Kensington and Chelsea">Kensington and Chelsea</option>
+                    <option value="Kingston upon Thames">Kingston upon Thames</option>
+                    <option value="Lewisham">Lewisham</option>
+                    <option value="Richmond upon Thames">Richmond upon Thames</option>
+                    <option value="Westminster">Westminster</option>
+                  </select><br /></td>
+                </tr>
+                <tr>
+                <td><label for="primarygp">Your Preferred Primary GP (within borough):</label></td>
+                <td><select name="primarygp" id="primarygp">
+                </select><br /></td>
+                </tr>
+                <tr>
+                  <td><label for="secondarygp">Your Secondary GP - Auto Selected by System:</label></td>
+                  <td><select name="secondarygp" id="secondarygp" disabled>
+                  </select><br /></td>
+                </tr>
+                
+              </table>
+             </div>
+
+            <div id="tab-6" class="tab-pane" role="tabpanel">
               <table>
                 <tr>
                   <td><label for="resident">Are you an ordinarily a resident in the UK?</label></td>
