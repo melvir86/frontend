@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Med Central!</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/editgpdetails.js"></script>
+  <script type="text/javascript" src="js/jquery.fly_sidemenu.js"></script>
+
+  <link href='css/fly_sidemenu.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/iwt-cw.css">
+  <link href="css/smart_tab_all.min.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="js/jquery.smartTab.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+  <link href="css/toast.style.css" rel="stylesheet">
+  <link href="css/toast.style.min.css" rel="stylesheet">
+  <script src="js/toast.script.js"></script>
+</head>
+
+<body>
+  <ul class="sidemenu">
+    <li><a href="registergp.html">Register for GP</a></li>
+    <li><a href="myrequests.html">My Requests</a></li>
+    <li><a href="editgpdetails.html">View & Update GP Details</a></li>
+    <li><a href="myrequests.html">Intray / Inbox (GP Admin)</a></li>
+    <li><a href="feedback.html">Feedback</a></li>
+    <li><a href="inboxnhsadmin.html">Intray / Inbox (NHS Admin)</a></li>
+  </ul>
+  <div class="pointer"></div>
+
+        <div id="smarttab">
+          <ul class="nav">
+             <li>
+                 <a class="nav-link">
+                   View & Update your GP details
+                 </a>
+             </li>
+          </ul>          
+
+          <div class="tab-content">
+            <h2>Update Your GP Details</h2>
+             <div id="tab-1" class="tab-pane" role="tabpanel">
+              <table>
+                <tr>
+                  <td><label for="gpname">GP Name:</label></td>
+                  <td><input type="text" id="gpname" name="gpname"></td>
+                </tr>
+                <tr>
+                  <td><label for="gpaddress">Address:</label></td>
+                  <td><textarea id="gpaddress" name="gpaddress" rows="7" cols="100"></textarea></td>
+                </tr>
+                <tr>
+                  <td><label for="gpborough">Borough:</label></td>
+                  <td><select name="gpborough" id="gpborough">
+                    <option value="Barking and Dagenham">Barking and Dagenham</option>
+                    <option value="Barnet">Barnet</option>
+                    <option value="Bexley">Bexley</option>
+                    <option value="Brent">Brent</option>
+                    <option value="Bromley">Bromley</option>
+                    <option value="Camden">Camden</option>
+                    <option value="Croydon">Croydon</option>
+                    <option value="Ealing">Ealing</option>
+                    <option value="Enfield">Enfield</option>
+                    <option value="Greenwich">Greenwich</option>
+                    <option value="Hackney">Hackney</option>
+                    <option value="Hammersmith and Fulham">Hammersmith and Fulham</option>
+                    <option value="Harrow">Harrow</option>
+                    <option value="Hillingdon">Hillingdon</option>
+                    <option value="Islington">Islington</option>
+                    <option value="Kensington and Chelsea">Kensington and Chelsea</option>
+                    <option value="Kingston upon Thames">Kingston upon Thames</option>
+                    <option value="Lewisham">Lewisham</option>
+                    <option value="Richmond upon Thames">Richmond upon Thames</option>
+                    <option value="Westminster">Westminster</option>
+                  </select><br /></td>
+                </tr>
+                <tr>
+                  <td><label for="gptelephone">Telephone:</label></td>
+                  <td><input type="text" id="gptelephone" name="gptelephone"></textarea></td>
+                </tr>
+                <tr>
+                  <td><label for="gpmaxcapacity">Max Capacity:</label></td>
+                  <td><input type="text" id="gpmaxcapacity" name="gpmaxcapacity"></textarea></td>
+                </tr>
+                <tr>
+                  <td><label for="gpcurrentcapacity">Current Capacity:</label></td>
+                  <td><input type="text" id="gpcurrentcapacity" name="gpcurrentcapacity" disabled></textarea></td>
+                </tr>
+                <tr>
+                  <td><label for="gpstatus">Status:</label></td>
+                  <td><select name="gpstatus" id="gpstatus">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="Permanently Closed">Permanently Closed</option>
+                  </select><br /></td>
+                </tr>
+                <tr>
+                  <td><label for="gpadmin">Admin In-Charge:</label></td>
+                  <td><input type="text" id="gpadmin" name="gpadmin"></textarea></td>
+                </tr>
+                <tr>
+                  <td><label for="gplastModifiedDate">Last Modified Date:</label></td>
+                  <td><input type="text" id="gplastModifiedDate" name="gplastModifiedDate" disabled></textarea></td>
+                </tr>
+                <input type="hidden" id="objid" name="objid" value="">
+              </table>
+              <br />
+              <div id="error" style="color:red"></div>
+              <br />
+              <input type="button" id="cancelGP" value="Cancel">
+              <input type="button" id="updateGP" value="Update">
+             </div>
+          </div>
+        </div>
+      </body>
+</html>
