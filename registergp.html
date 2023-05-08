@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="css/iwt-cw.css">
   <link href="css/smart_tab_all.min.css" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="js/jquery.smartTab.min.js"></script>
-  <script type="text/javascript" src="js/iwt-cw.js"></script>
 
   <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
@@ -72,43 +71,43 @@
              <div id="tab-1" class="tab-pane" role="tabpanel">
               <table>
                 <tr>
-                <td><label for="forename">Forename:</label></td>
-                <td><input type="text" id="forename" name="forename"><br /></td>
-                <td><label for="surname">Surname:</label></td>
-                <td><input type="text" id="surname" name="surname"><br /></td>
+                <td><label for="basic_forename">Forename:</label></td>
+                <td><input type="text" id="basic_forename" name="basic_forename"><br /></td>
+                <td><label for="basic_surname">Surname:</label></td>
+                <td><input type="text" id="basic_surname" name="basic_surname"><br /></td>
                 </tr>
                 <tr>
-                  <td><label for="dob">Date of Birth:</label></td>
-                  <td><input type="text" id="dob" name="dob"></td>
-                  <td><label for="height">Height:</label></td>
-                  <td><input type="text" id="height" name="height"><br /></td>
-                  <td><label for="weight">Weight:</label></td>
-                  <td><input type="text" id="weight" name="weight"><br /></td>
+                  <td><label for="basic_dob">Date of Birth:</label></td>
+                  <td><input type="date" id="basic_dob" name="basic_dob"></td>
+                  <td><label for="basic_height">Height (cm):</label></td>
+                  <td><input type="text" id="basic_height" name="basic_height"><br /></td>
+                  <td><label for="basic_weight">Weight (kg):</label></td>
+                  <td><input type="text" id="basic_weight" name="basic_weight"><br /></td>
                 </tr>
                 <tr>
-                  <td><label for="nhsno">NHS Number (if exists):</label></td>
-                  <td><input type="text" id="nhsno" name="nhsno"></td>
-                  <td><label for="towncountry">Town and Country of birth:</label></td>
-                  <td><input type="text" id="towncountry" name="towncountry"><br /></td>
+                  <td><label for="basic_nhsnumber">NHS Number (if exists):</label></td>
+                  <td><input type="text" id="basic_nhsnumber" name="basic_nhsnumber"></td>
+                  <td><label for="basic_country">Town and Country of birth:</label></td>
+                  <td><input type="text" id="basic_country" name="basic_country"><br /></td>
                 </tr>
                 <tr>
-                  <td><label for="gender">Select Gender:</label></td>
+                  <td><label for="basic_gender">Select Gender:</label></td>
                   <td>
-                        <input type="radio" id="male" name="gender" value="male">
+                        <input type="radio" id="basic_gender" name="male" value="male">
                         <label for="male">Male</label>
-                        <input type="radio" id="female" name="gender" value="female">
+                        <input type="radio" id="basic_gender" name="female" value="female">
                         <label for="female">Female</label>
                   </td>
                 </tr>
                 <tr>
-                  <td><label for="address">Address:</label></td>
-                  <td><textarea id="address" name="address" rows="4" cols="50"></textarea></td>
+                  <td><label for="basic_address">Address:</label></td>
+                  <td><textarea id="basic_address" name="basic_address" rows="4" cols="50"></textarea></td>
                 </tr>
                 <tr>
-                  <td><label for="postcode">Postcode:</label></td>
-                  <td><input type="text" id="postcode" name="postcode"></td>
-                  <td><label for="email">Email:</label></td>
-                  <td><input type="email" id="email" name="email"><br /></td>
+                  <td><label for="basic_postcode">Postcode:</label></td>
+                  <td><input type="text" id="basic_postcode" name="basic_postcode"></td>
+                  <td><label for="basic_email">Email:</label></td>
+                  <td><input type="email" id="basic_email" name="basic_email"><br /></td>
                 </tr>
               </table>
 
@@ -116,8 +115,9 @@
              <div id="tab-2" class="tab-pane" role="tabpanel">
               <table>
                 <tr>
-                <td><label for="diseases">1. Have you suffered from or with any of the following:</label></td>
-                <td><select name="diseases" id="diseases">
+                <td><label for="health_suffered">1. Have you suffered from or with any of the following:</label></td>
+                <td><select name="health_suffered" id="health_suffered">
+                  <option value="NA">NA</option>
                   <option value="heartattack">Heart Attack</option>
                   <option value="diabetes">Diabetes</option>
                   <option value="cancer">Cancer</option>
@@ -130,114 +130,109 @@
                 </select><br /></td>
                 </tr>
                 <tr>
-                  <td><label for="remarks">If you suffer from any of the above illness, please provide details:</label></td>
-                  <td><textarea id="remarks" name="remarks" rows="4" cols="50"></textarea></td>
+                  <td><label for="health_suffereddetails">If you suffer from any of the above illness, please provide details:</label></td>
+                  <td><textarea id="health_suffereddetails" name="health_suffereddetails" rows="4" cols="50"></textarea></td>
                 </tr>
 
                 <tr>
-                  <td><label for="operation">2a. Have you had any illness or operations in the past?</label></td>
+                  <td><label for="health_operations">2a. Have you had any illness or operations in the past?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="operation" value="yes">
+                        <input type="radio" id="yes" name="health_operations" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="operation" value="no">
+                        <input type="radio" id="no" name="health_operations" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
 
                 <tr>
-                  <td><label for="testedtb">2b. Have you been previously tested or treated in the UK for TB?</label></td>
+                  <td><label for="health_TB">2b. Have you been previously tested or treated in the UK for TB?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="testedtb" value="yes">
+                        <input type="radio" id="yes" name="health_TB" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="testedtb" value="no">
+                        <input type="radio" id="no" name="health_TB" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
 
                 <tr>
-                  <td><label for="livedtb">2c. Have you ever lived for more than 6 months in a country with high incidence for TB?</label></td>
+                  <td><label for="health_TBCountry">2c. Have you ever lived for more than 6 months in a country with high incidence for TB?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="livedtb" value="yes">
+                        <input type="radio" id="yes" name="health_TBCountry" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="livedtb" value="no">
+                        <input type="radio" id="no" name="health_TBCountry" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
 
                 <tr>
-                  <td><label for="smoke">3. Do you smoke?</label></td>
+                  <td><label for="health_smoke">3. Do you smoke?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="smoke" value="yes">
+                        <input type="radio" id="yes" name="health_smoke" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="smoke" value="no">
+                        <input type="radio" id="no" name="health_smoke" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
 
                 <tr>
-                  <td><label for="alcohol">4. Do you drink alcohol?</label></td>
+                  <td><label for="health_drink">4. Do you drink alcohol?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="alcohol" value="yes">
+                        <input type="radio" id="yes" name="health_drink" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="alcohol" value="no">
+                        <input type="radio" id="no" name="health_drink" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
 
                 <tr>
-                  <td><label for="disability">5. Do you consider yourself having any form of disability?</label></td>
+                  <td><label for="health_disability">5. Do you consider yourself having any form of disability?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="disability" value="yes">
+                        <input type="radio" id="yes" name="health_disability" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="disability" value="no">
+                        <input type="radio" id="no" name="health_disability" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
-                  <td><label for="disability">If so, please provide details:</label></td>
-                  <td><textarea id="disability" name="disability" rows="4" cols="50"></textarea></td>
+                  <td><label for="health_disabilitydetails">If so, please provide details:</label></td>
+                  <td><textarea id="health_disabilitydetails" name="health_disabilitydetails" rows="4" cols="50"></textarea></td>
                 </tr>
 
                 <tr>
-                  <td><label for="allergy">6) Are there any medicines or drugs that have disagreed with you or to which you are allergic?</label></td>
+                  <td><label for="health_allergy">6. Are there any medicines or drugs that have disagreed with you or to which you are allergic?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="allergy" value="yes">
+                        <input type="radio" id="yes" name="health_allergy" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="allergy" value="no">
+                        <input type="radio" id="no" name="health_allergy" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
-                  <td><label for="allergy">If so, please provide details:</label></td>
-                  <td><textarea id="allergy" name="allergy" rows="4" cols="50"></textarea></td>
+                  <td><label for="health_allergydetails">If so, please provide details:</label></td>
+                  <td><textarea id="health_allergydetails" name="health_allergydetails" rows="4" cols="50"></textarea></td>
                 </tr>
 
                 <tr>
-                  <td><label for="medicines">7) Are you taking any prescribed medicines currently?</label></td>
+                  <td><label for="health_medication">7. Are you taking any prescribed medicines currently?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="medicines" value="yes">
+                        <input type="radio" id="yes" name="health_medication" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="medicines" value="no">
+                        <input type="radio" id="no" name="health_medication" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
-                  <td><label for="allergy">If so, please provide details:</label></td>
-                  <td><textarea id="allergy" name="allergy" rows="4" cols="50"></textarea></td>
+                  <td><label for="health_medicationdetails">If so, please provide details:</label></td>
+                  <td><textarea id="health_medicationdetails" name="health_medicationdetails" rows="4" cols="50"></textarea></td>
                 </tr>
 
                 <tr>
-                  <td><label for="exercise">8. How often do you exercise per week?:</label></td>
-                  <td><select name="exercise" id="exercise">
+                  <td><label for="health_exercise">8. How often do you exercise per week?:</label></td>
+                  <td><select name="health_exercise" id="health_exercise">
+                    <option value="none">None</option>
                     <option value="onceaweek">Once a week</option>
                     <option value="threetimesormore">3 times or more</option>
                     <option value="everyday">Everyday</option>
-                    <option value="hpb">High Blood Pressure</option>
-                    <option value="asthma">Asthma</option>
-                    <option value="stroke">Stroke</option>
-                    <option value="tia">TIA</option>
-                    <option value="mental">Mental Illness</option>
-                    <option value="copd">COPD</option>
                   </select><br /></td>
                   </tr>
               </table>
@@ -267,9 +262,9 @@
                     <tr>
                       <td><label for="carer">2. Are you are carer for an elderly or sick relative or friend?</label></td>
                       <td>
-                        <input type="radio" id="yes" name="carer" value="yes">
+                        <input type="radio" id="carer" name="yes" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="carer" value="no">
+                        <input type="radio" id="carer" name="no" value="no">
                         <label for="no">No</label>
                       </td>
                       </tr>
@@ -285,18 +280,18 @@
                 <tr>
                   <td><label for="englishspoken">1. Do you need support with Spoken English?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="englishspoken" value="yes">
+                        <input type="radio" id="englishspoken" name="yes" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="englishspoken" value="no">
+                        <input type="radio" id="englishspoken" name="no" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
                   <td><label for="englishwritten">2. Do you need support with Written English?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="englishwritten" value="yes">
+                        <input type="radio" id="englishwritten" name="yes" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="englishwritten" value="no">
+                        <input type="radio" id="englishwritten" name="no" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
@@ -435,7 +430,7 @@
               <div id="error" style="color:red"></div>
               <br />
               <input type="button" id="cancel" value="Cancel">
-              <input type="button" id="submit" value="Submit">
+              <input type="button" id="submitRegistration" value="Submit">
              </div>
           </div>
         </div>

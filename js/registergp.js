@@ -4,8 +4,70 @@ $(document).ready(function() {
     //var objid = (new URL(location.href)).searchParams.get('id');
     //console.log(objid);
 
-    $("#currentborough").change(function () {
+            //function for update feedback handled by jquery
+            $("#submitRegistration").click(function() {
 
+                fetch("http://localhost:8080/api/v1/Registrations/", {
+                method: "post",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+
+                //make sure to serialize your JSON body
+                body: JSON.stringify({
+                    //"user": "user1",
+                    "basic_forename": document.getElementById('basic_forename').value,
+                    "basic_surname": document.getElementById('basic_surname').value,
+                    "basic_dob": document.getElementById('basic_dob').value,
+                    "basic_height": document.getElementById('basic_height').value,
+                    "basic_weight": document.getElementById('basic_weight').value,
+                    "basic_nhsnumber": document.getElementById('basic_nhsnumber').value,
+                    "basic_country": document.getElementById('basic_country').value,
+                    "basic_gender": document.getElementById('basic_gender').value,
+                    "basic_address": document.getElementById('basic_address').value,
+                    "basic_postcode": document.getElementById('basic_postcode').value,
+                    "basic_email": document.getElementById('basic_email').value,
+
+                    "health_suffered": document.getElementById('health_suffered').value,
+                    "health_suffereddetails": document.getElementById('health_suffereddetails').value,
+                    "health_operations": document.querySelector('input[name="health_operations"]:checked').value,
+                    "health_TB": document.querySelector('input[name="health_TB"]:checked').value,
+                    "health_TBCountry": document.querySelector('input[name="health_TBCountry"]:checked').value,
+                    "health_smoke": document.querySelector('input[name="health_smoke"]:checked').value,
+                    "health_drink": document.querySelector('input[name="health_drink"]:checked').value,
+                    "health_disability": document.querySelector('input[name="health_disability"]:checked').value,
+                    "health_disabilitydetails": document.getElementById('health_disabilitydetails').value,
+                    "health_allergy": document.querySelector('input[name="health_allergy"]:checked').value,
+                    "health_allergydetails": document.getElementById('health_allergydetails').value,
+                    "health_medication": document.querySelector('input[name="health_medication"]:checked').value,
+                    "health_medicationdetails": document.getElementById('health_medicationdetails').value,
+                    "health_exercise": document.getElementById('health_exercise').value
+                })
+                })
+                .then( (response) => { 
+                //do something awesome that makes the world a better place
+                console.log(response.json());
+                console.log(response.status); // Will show you the status
+
+                var options = {
+                    position_class:"toast-top-right",
+                    has_progress:true,
+                }
+
+                if (!response.ok) {
+                throw new Error("HTTP status " + response.status);
+                $.Toast("Failure!","You have not submitted your feeeback", "error", options); 
+                }
+                else {
+                $.Toast("Success!","You have submitted your GP Registration", "success", options);  
+                }
+
+                //return response.json();
+                });
+        });
+        
+    $("#currentborough").change(function () {
     var borough = document.getElementById('currentborough').value;
     console.log(borough);
 
@@ -79,59 +141,6 @@ $(document).ready(function() {
         });
     
         });
-
-        //function for update feedback handled by jquery
-        $("#updateGP").click(function() {
-                var objid = document.getElementById('objid').value;
-                console.log(objid);
-                console.log(document.getElementById('gpname').value);
-
-                fetch("http://localhost:8080/api/v1/GPs/" + objid, {
-                method: "put",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-
-                //make sure to serialize your JSON body
-                body: JSON.stringify({
-                    //"user": "user1",
-                    "name": document.getElementById('gpname').value,
-                    "address": document.getElementById('gpaddress').value,
-                    "borough": document.getElementById('gpborough').value,
-                    "telephone": document.getElementById('gptelephone').value,
-                    "maxcapacity": document.getElementById('gpmaxcapacity').value,
-                    "currentcapacity": document.getElementById('gpcurrentcapacity').value,
-                    "status": document.getElementById('gpstatus').value,
-                    "admin": document.getElementById('gpadmin').value
-                })
-                })
-                .then( (response) => { 
-                //do something awesome that makes the world a better place
-                console.log(response.json());
-                console.log(response.status); // Will show you the status
-
-                var options = {
-                    position_class:"toast-top-right",
-                    has_progress:true,
-                }
-
-                if (!response.ok) {
-                throw new Error("HTTP status " + response.status);
-                $.Toast("Failure!","You have not submitted your feeeback", "error", options); 
-                }
-                else {
-                $.Toast("Success!","You have updated your GP details", "success", options);  
-                }
-
-                //return response.json();
-                });
-        });
-
-                 //function for cancel feedback handled by jquery
-                $("#cancelGP").click(function() {
-                    window.location.href = "index.html";  
-            });
 
 $(".sidemenu").fly_sidemenu();
 
