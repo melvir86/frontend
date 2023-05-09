@@ -19,6 +19,9 @@
   <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
 
+  <link href="css/toast.style.css" rel="stylesheet">
+  <link href="css/toast.style.min.css" rel="stylesheet">
+  <script src="js/toast.script.js"></script>
 </head>
 
 <body>
@@ -31,6 +34,12 @@
     <li><a href="inboxnhsadmin.html">Intray / Inbox (NHS Admin)</a></li>
   </ul>
   <div class="pointer"></div>
+
+  <h2>View Submitted GP Registrations</h2>
+  <table id="registrationList" class="display" width="100%"></table>
+
+  <br/><br/><br/>
+
   <h2>Register for GP</h2>
 
         <div id="smarttab">
@@ -66,7 +75,7 @@
                 </a>
             </li>
           </ul>
-       
+
           <div class="tab-content">
              <div id="tab-1" class="tab-pane" role="tabpanel">
               <table>
@@ -241,8 +250,8 @@
              <div id="tab-3" class="tab-pane" role="tabpanel">
               <table>
                     <tr>
-                    <td><label for="relativesillness">1. Have any of your close relatives suffered from any of the following illnesses?</label></td>
-                    <td><select name="relativesillness" id="relativesillness">
+                    <td><label for="family_illnesss">1. Have any of your close relatives suffered from any of the following illnesses?</label></td>
+                    <td><select name="family_illnesss" id="family_illnesss">
                       <option value="heartattack">Heart Attack</option>
                       <option value="heartdisease">Heart Disease</option>
                       <option value="diabetes">Diabetes</option>
@@ -256,21 +265,21 @@
                     </select><br /></td>
                     </tr>
                     <tr>
-                      <td><label for="relativesillness">If so, please provide details:</label></td>
-                      <td><textarea id="relativesillness" name="relativesillness" rows="4" cols="50"></textarea></td>
+                      <td><label for="family_illnesssdetails">If so, please provide details:</label></td>
+                      <td><textarea id="family_illnesssdetails" name="family_illnesssdetails" rows="4" cols="50"></textarea></td>
                     </tr>
                     <tr>
-                      <td><label for="carer">2. Are you are carer for an elderly or sick relative or friend?</label></td>
+                      <td><label for="family_carer">2. Are you are carer for an elderly or sick relative or friend?</label></td>
                       <td>
-                        <input type="radio" id="carer" name="yes" value="yes">
+                        <input type="radio" id="yes" name="family_carer" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="carer" name="no" value="no">
+                        <input type="radio" id="no" name="family_carer" value="no">
                         <label for="no">No</label>
                       </td>
                       </tr>
                       <tr>
-                        <td><label for="carer">If so, please provide details:</label></td>
-                        <td><textarea id="carer" name="carer" rows="4" cols="50"></textarea></td>
+                        <td><label for="family_carerdetails">If so, please provide details:</label></td>
+                        <td><textarea id="family_carerdetails" name="family_carerdetails" rows="4" cols="50"></textarea></td>
                       </tr>
               </table>
              </div>
@@ -280,33 +289,33 @@
                 <tr>
                   <td><label for="englishspoken">1. Do you need support with Spoken English?</label></td>
                   <td>
-                        <input type="radio" id="englishspoken" name="yes" value="yes">
+                        <input type="radio" id="yes" name="profiling_englishspoken" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="englishspoken" name="no" value="no">
+                        <input type="radio" id="no" name="profiling_englishspoken" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
                   <td><label for="englishwritten">2. Do you need support with Written English?</label></td>
                   <td>
-                        <input type="radio" id="englishwritten" name="yes" value="yes">
+                        <input type="radio" id="yes" name="profiling_englishwritten" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="englishwritten" name="no" value="no">
+                        <input type="radio" id="no" name="profiling_englishwritten" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
                   <td><label for="englishfirst">3. Is English your first language?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="englishfirst" value="yes">
+                        <input type="radio" id="yes" name="profiling_englishfirst" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="englishfirst" value="no">
+                        <input type="radio" id="no" name="profiling_englishfirst" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
-                  <td><label for="religion">4. Which religion do you follow or practice?:</label></td>
-                  <td><select name="religion" id="religion">
+                  <td><label for="profiling_religion">4. Which religion do you follow or practice?:</label></td>
+                  <td><select name="profiling_religion" id="profiling_religion">
                     <option value="buddism">Buddhism</option>
                     <option value="christianity">Christianity</option>
                     <option value="islam">Islam</option>
@@ -318,8 +327,8 @@
                   </select><br /></td>
                 </tr>
                 <tr>
-                  <td><label for="ethnicgroup">5. To which of these ethnic groups do you feel you belong?</label></td>
-                  <td><select name="ethnicgroup" id="ethnicgroup">
+                  <td><label for="profiling_ethnicgroup">5. To which of these ethnic groups do you feel you belong?</label></td>
+                  <td><select name="profiling_ethnicgroup" id="profiling_ethnicgroup">
                     <option value="white">White</option>
                     <option value="chinese">Chinese or other ethnic Group</option>
                     <option value="black">Black or Black British</option>
@@ -334,8 +343,8 @@
              <div id="tab-5" class="tab-pane" role="tabpanel">
               <table>
                 <tr>
-                  <td><label for="currentborough">Current Borough:</label></td>
-                  <td><select name="currentborough" id="currentborough">
+                  <td><label for="gp_borough">Current Borough:</label></td>
+                  <td><select name="gp_borough" id="gp_borough">
                     <option value="Barking and Dagenham">Barking and Dagenham</option>
                     <option value="Barnet">Barnet</option>
                     <option value="Bexley">Bexley</option>
@@ -359,13 +368,13 @@
                   </select><br /></td>
                 </tr>
                 <tr>
-                <td><label for="primarygp">Your Preferred Primary GP (within borough):</label></td>
-                <td><select name="primarygp" id="primarygp">
+                <td><label for="gp_primary">Your Preferred Primary GP (within borough):</label></td>
+                <td><select name="gp_primary" id="gp_primary">
                 </select><br /></td>
                 </tr>
                 <tr>
-                  <td><label for="secondarygp">Your Secondary GP - Auto Selected by System:</label></td>
-                  <td><select name="secondarygp" id="secondarygp" disabled>
+                  <td><label for="gp_secondary">Your Secondary GP - Auto Selected by System:</label></td>
+                  <td><select name="gp_secondary" id="gp_secondary" disabled>
                   </select><br /></td>
                 </tr>
                 
@@ -375,47 +384,47 @@
             <div id="tab-6" class="tab-pane" role="tabpanel">
               <table>
                 <tr>
-                  <td><label for="resident">Are you an ordinarily a resident in the UK?</label></td>
+                  <td><label for="consent_resident">Are you an ordinarily a resident in the UK?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="resident" value="yes">
+                        <input type="radio" id="yes" name="consent_resident" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="resident" value="no">
+                        <input type="radio" id="no" name="consent_resident" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
-                  <td><label for="eea">Do you live in another EEA country, or have moved to the UK to study or retire, or live in the UK but work in another EEA member state?</label></td>
+                  <td><label for="consent_eea">Do you live in another EEA country, or have moved to the UK to study or retire, or live in the UK but work in another EEA member state?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="eea" value="yes">
+                        <input type="radio" id="yes" name="consent_eea" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="eea" value="no">
+                        <input type="radio" id="no" name="consent_eea" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
-                  <td><label for="ehic">Do you have a non-UK European Health Insurance Card (EHIC) or a Provisional Replacement Certificate (PRC)?</label></td>
+                  <td><label for="consent_prc">Do you have a non-UK European Health Insurance Card (EHIC) or a Provisional Replacement Certificate (PRC)?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="ehic" value="yes">
+                        <input type="radio" id="yes" name="consent_prc" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="ehic" value="no">
+                        <input type="radio" id="no" name="consent_prc" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
-                  <td><label for="smscomms">I give my consent to receive SMS text notifications for communication</label></td>
+                  <td><label for="consent_sms">I give my consent to receive SMS text notifications for communication</label></td>
                   <td>
-                        <input type="radio" id="yes" name="smscomms" value="yes">
+                        <input type="radio" id="yes" name="consent_sms" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="smscomms" value="no">
+                        <input type="radio" id="no" name="consent_sms" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
-                  <td><label for="emailcomms">I give my consent to receive Email notifications for communication</label></td>
+                  <td><label for="consent_email">I give my consent to receive Email notifications for communication</label></td>
                   <td>
-                        <input type="radio" id="yes" name="emailcomms" value="yes">
+                        <input type="radio" id="yes" name="consent_email" value="yes">
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="emailcomms" value="no">
+                        <input type="radio" id="no" name="consent_email" value="no">
                         <label for="no">No</label>
                   </td>
                 </tr>
@@ -429,7 +438,7 @@
               <br />
               <div id="error" style="color:red"></div>
               <br />
-              <input type="button" id="cancel" value="Cancel">
+              <input type="button" id="cancelRegistration" value="Cancel">
               <input type="button" id="submitRegistration" value="Submit">
              </div>
           </div>

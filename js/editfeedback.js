@@ -4,7 +4,7 @@ $(document).ready(function() {
     var objid = (new URL(location.href)).searchParams.get('id');
     console.log(objid);
 
-    fetch('http://localhost:8080/api/v1/feedbacks/' + objid + new URLSearchParams({
+    fetch('http://localhost:8083/api/v1/feedbacks/' + objid + new URLSearchParams({
     }))
     .then(response => response.json())
     .then(data => {
@@ -39,7 +39,7 @@ $(document).ready(function() {
         //function for update feedback handled by jquery
         $("#updateFeedback").click(function() {
 
-                fetch("http://localhost:8080/api/v1/feedbacks/" + objid, {
+                fetch("http://localhost:8083/api/v1/feedbacks/" + objid, {
                 method: "put",
                 headers: {
                     'Accept': 'application/json',
@@ -79,7 +79,7 @@ $(document).ready(function() {
                 //function for delete feedback handled by jquery
                 $("#deleteFeedback").click(function() {
 
-                    fetch("http://localhost:8080/api/v1/feedbacks/" + objid, {
+                    fetch("http://localhost:8083/api/v1/feedbacks/" + objid, {
                     method: "delete",
                     headers: {
                         'Accept': 'application/json',

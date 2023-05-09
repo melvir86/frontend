@@ -1,7 +1,7 @@
             $(document).ready(function() {
 
             //function to retrieve feedbacks on main feedback page load
-            fetch('http://localhost:8080/api/v1/feedbacks/user?' + new URLSearchParams({
+            fetch('http://localhost:8083/api/v1/feedbacks/user?' + new URLSearchParams({
                 "user": 'user1',
             }))
             .then(response => response.json())
@@ -31,11 +31,16 @@
                     { "data": "lastModifiedDate", "name": "Last Modified Date", "title": "Last Modified Date" },
                     { "data": "type", "name": "Type", "title": "Type" },
                     { "data": "feedback", "name": "Feedback", "title": "Feedback" },
-                    { "data": "status", "name": "Status", "title": "Status" },
                     { "data": "user", "name": "Created By", "title": "Created By" },
-                    {
-                        data: null ,
-                        defaultContent: "<button>Edit</button>",
+                    { "data": "status", "name": "Status", "title": "Status",
+                    render: function (data, type, row, meta) {
+                        if (row.status == "Pending") {
+                          return '<button>Edit</button>';
+                        }
+                        else {
+                          return '<button disabled>Edit</button>';
+                        }
+                      }
                     },
                     ]
             } );
@@ -57,7 +62,7 @@
                         //create empty html variable to be formed as results returned from php file
                         var html = "";
 
-                        fetch("http://localhost:8080/api/v1/feedbacks", {
+                        fetch("http://localhost:8083/api/v1/feedbacks", {
                         method: "post",
                         headers: {
                             'Accept': 'application/json',
