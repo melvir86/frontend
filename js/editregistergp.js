@@ -1,13 +1,11 @@
 $(document).ready(function() {
 
     //function to retrieve feedbacks on edit feedback page load
-    //var objid = (new URL(location.href)).searchParams.get('id');
-    //console.log(objid);
+    var objid = (new URL(location.href)).searchParams.get('id');
+    console.log(objid);
 
     //function to retrieve feedbacks on main feedback page load
-    fetch('http://localhost:8082/api/v1/Registrations/user?' + new URLSearchParams({
-        "user": 'user1',
-        "status": "Pending",
+    fetch('http://localhost:8082/api/v1/Registrations/' + objid + new URLSearchParams({
     }))
     .then(response => response.json())
     .then(data => {
@@ -25,50 +23,72 @@ $(document).ready(function() {
 
     if (!data) {
     //throw new Error("HTTP status " + response.status);
-    $.Toast("Failure!","Error in retrieving your feedbacks", "error", options); 
+    $.Toast("Failure!","Error in retrieving your registration details", "error", options); 
     }
     else {
-        var table = $('#registrationList').DataTable( {
-            data: data,
-            "columns": [
-            { "data": "_id", "name": "Id", "title": "Id", "visible": false },
-            { "data": "createdDate", "name": "Created Date", "title": "Created Date" },
-            { "data": "lastModifiedDate", "name": "Last Modified Date", "title": "Last Modified Date" },
-            { "data": "basic_forename", "name": "Forename", "title": "Forename" },
-            { "data": "basic_surname", "name": "Surname", "title": "Surname" },
-            { "data": "gp_borough", "name": "Borough", "title": "Borough" },
-            { "data": "gp_primary", "name": "Primary GP", "title": "Primary GP" },
-            { "data": "status", "name": "Status", "title": "Status1" },
-            { "data": "", "name": "", "title": "Action",
-            render: function (data, type, row, meta) {
-                if (row.status == "Pending") {
-                  return '<button>Edit</button>';
-                }
-                else {
-                  return '<button disabled>Edit</button>';
-                }
-              }
-            },
-            ],
-    } );
+        //document.getElementById(data[0].type).checked = true;
+        document.getElementById('basic_forename').value = data[0].basic_forename;
+        document.getElementById('basic_surname').value = data[0].basic_surname;
+        document.getElementById('basic_dob').value = data[0].basic_dob;
+        document.getElementById('basic_height').value = data[0].basic_height;
+        document.getElementById('basic_weight').value = data[0].basic_weight;
+        document.getElementById('basic_nhsnumber').value = data[0].basic_nhsnumber;
+        document.getElementById('basic_country').value = data[0].basic_country;
+        document.getElementById('basic_gender').value = data[0].basic_gender;
+        document.getElementById('basic_address').value = data[0].basic_address;
+        document.getElementById('basic_postcode').value = data[0].basic_postcode;
+        document.getElementById('basic_email').value = data[0].basic_email;
 
-    $('#registrationList tbody').on('click', 'button', function () {
-        var data = table.row($(this).parents('tr')).data();
-        console.log(data);
-        //alert("Parameter to pass to next page is: " + data._id);
-        window.location.href = "editregistergp.html?id=" + data._id;
-    });
+        document.getElementById('health_suffered').value = data[0].health_suffered;
+        document.getElementById('health_suffereddetails').value = data[0].health_suffereddetails;
+        $("input[name=health_operations]").val([data[0].health_operations]);
+        $("input[name=health_TB]").val([data[0].health_TB]);
+        $("input[name=health_TBCountry]").val([data[0].health_TBCountry]);
+        $("input[name=health_smoke]").val([data[0].health_smoke]);
+        $("input[name=health_drink]").val([data[0].health_drink]);
+        $("input[name=health_disability]").val([data[0].health_disability]);
+        document.getElementById('health_disabilitydetails').value = data[0].health_disabilitydetails;
+        $("input[name=health_allergy]").val([data[0].health_allergy]);
+        document.getElementById('health_allergydetails').value = data[0].health_allergydetails;
+        $("input[name=health_medication]").val([data[0].health_medication]);
+        document.getElementById('health_medicationdetails').value = data[0].health_medicationdetails;
+        document.getElementById('health_exercise').value = data[0].health_exercise;
 
-    $.Toast("Success!","You have retrieved your feeebacks", "success", options);  
+        document.getElementById('family_illnesss').value = data[0].family_illnesss;
+        document.getElementById('family_illnesssdetails').value = data[0].family_illnesssdetails;
+        $("input[name=family_carer]").val([data[0].family_carer]);
+        document.getElementById('family_carerdetails').value = data[0].family_carerdetails;
+
+        $("input[name=profiling_englishspoken]").val([data[0].profiling_englishspoken]);
+        $("input[name=profiling_englishwritten]").val([data[0].profiling_englishwritten]);
+        $("input[name=profiling_englishfirst]").val([data[0].profiling_englishfirst]);
+        document.getElementById('profiling_religion').value = data[0].profiling_religion;
+        document.getElementById('profiling_ethnicgroup').value = data[0].profiling_ethnicgroup;
+        
+        document.getElementById('gp_borough').value = data[0].gp_borough;
+        $('#gp_primary').append(`<option value="${data[0].gp_primary}">
+        ${data[0].gp_primary}
+        </option>`);
+        $('#gp_secondary').append(`<option value="${data[0].gp_secondary}">
+        ${data[0].gp_secondary}
+        </option>`);
+
+        $("input[name=consent_resident]").val([data[0].consent_resident]);
+        $("input[name=consent_eea]").val([data[0].consent_eea]);
+        $("input[name=consent_prc]").val([data[0].consent_prc]);
+        $("input[name=consent_sms]").val([data[0].consent_sms]);
+        $("input[name=consent_email]").val([data[0].consent_email]);
+
+        $.Toast("Success!","You have retrieved your registration detail", "success", options);  
     }
     //return response.json();
 });
 
             //function for update feedback handled by jquery
-            $("#submitRegistration").click(function() {
+            $("#updateRegistration").click(function() {
 
-                fetch("http://localhost:8082/api/v1/Registrations/", {
-                method: "post",
+                fetch("http://localhost:8082/api/v1/Registrations/" + objid, {
+                method: "put",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -142,14 +162,63 @@ $(document).ready(function() {
                 $.Toast("Failure!","You have not submitted your feeeback", "error", options); 
                 }
                 else {
-                $.Toast("Success!","You have submitted your GP Registration", "success", options);  
+                $.Toast("Success!","You have updated your GP Registration information", "success", options);
+                setTimeout(function () {
+                    window.location.href = "registergp.html"; //will redirect back to registergp page
+                 }, 5000); //will call the function after 5 secs
                 }
 
                 //return response.json();
                 });
         });
+
+                //function for delete feedback handled by jquery
+                $("#deleteRegistration").click(function() {
+
+                    fetch("http://localhost:8082/api/v1/Registrations/" + objid, {
+                    method: "delete",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+    
+                    //make sure to serialize your JSON body
+                    body: JSON.stringify({
+                    })
+                    })
+                    .then( (response) => { 
+                    //do something awesome that makes the world a better place
+                    //console.log(response.json());
+                    console.log(response.status); // Will show you the status
+    
+                    var options = {
+                        position_class:"toast-top-right",
+                        has_progress:true,
+                    }
+    
+                    if (!response.ok) {
+                    throw new Error("HTTP status " + response.status);
+                    $.Toast("Failure!","You have not deleted your registration", "error", options); 
+                    }
+                    else {
+                        $.Toast("Success!","You have deleted your GP Registration information", "success", options);
+                        setTimeout(function () {
+                            window.location.href = "registergp.html"; //will redirect back to registergp page
+                         }, 5000); //will call the function after 5 secs
+                        }
+    
+                    //return response.json();
+                    });
+            });
+
+                 //function for cancel feedback handled by jquery
+                $("#cancel").click(function() {
+                    window.location.href = "registergp.html";  
+            });
         
     $("#gp_borough").change(function () {
+    $('#gp_primary').html("");
+    $('#gp_secondary').html("");
     var borough = document.getElementById('gp_borough').value;
     console.log(borough);
 
