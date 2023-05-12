@@ -38,10 +38,12 @@ $(document).ready(function() {
             { "data": "basic_surname", "name": "Surname", "title": "Surname" },
             { "data": "gp_borough", "name": "Borough", "title": "Borough" },
             { "data": "gp_primary", "name": "Primary GP", "title": "Primary GP" },
-            { "data": "status", "name": "Status", "title": "Status1" },
+            { "data": "status", "name": "Status", "title": "Status" },
             { "data": "", "name": "", "title": "Action",
             render: function (data, type, row, meta) {
-                if (row.status == "Submitted") {
+                if (row.status == "Submitted" || row.status == "Resubmitted" || row.status == "Information request by GP") {
+                  $("#smarttab").empty();
+                  $("#smarttab").append("You are not allowed to create another GP Registration request while your current request is being processed!");
                   return '<button>Edit</button>';
                 }
                 else {

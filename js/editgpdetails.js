@@ -5,7 +5,7 @@ $(document).ready(function() {
     //console.log(objid);
     var admin = "User1";
 
-    fetch('http://localhost:8080/api/v1/GPs/' + admin + new URLSearchParams({
+    fetch('http://localhost:8081/api/v1/GPs/' + admin + new URLSearchParams({
     }))
     .then(response => response.json())
     .then(data => {
@@ -26,16 +26,15 @@ $(document).ready(function() {
     $.Toast("Failure!","Error in retrieving your gp details", "error", options); 
     }
     else {
-    //document.getElementById(data[0].type).checked = true;
-    document.getElementById('gpname').value = data[0].name;
-    document.getElementById('gpaddress').value = data[0].address;
-    document.getElementById('gpborough').value = data[0].borough;
-    document.getElementById('gptelephone').value = data[0].telephone;
-    document.getElementById('gpmaxcapacity').value = data[0].maxcapacity;
-    document.getElementById('gpcurrentcapacity').value = data[0].currentcapacity;
-    document.getElementById('gpstatus').value = data[0].status;
-    document.getElementById('gplastModifiedDate').value = data[0].lastModifiedDate;
-    document.getElementById('gpadmin').value = data[0].admin;
+    document.getElementById('name').value = data[0].name;
+    document.getElementById('address').value = data[0].address;
+    document.getElementById('borough').value = data[0].borough;
+    document.getElementById('telephone').value = data[0].telephone;
+    document.getElementById('maxcapacity').value = data[0].maxcapacity;
+    document.getElementById('currentcapacity').value = data[0].currentcapacity;
+    document.getElementById('status').value = data[0].status;
+    document.getElementById('lastModifiedDate').value = data[0].lastModifiedDate;
+    document.getElementById('admin').value = data[0].admin;
     document.getElementById('objid').value = data[0]._id;
 
     $.Toast("Success!","You have retrieved your gp detail", "success", options);  
@@ -49,7 +48,7 @@ $(document).ready(function() {
                 console.log(objid);
                 console.log(document.getElementById('gpname').value);
 
-                fetch("http://localhost:8080/api/v1/GPs/" + objid, {
+                fetch("http://localhost:8081/api/v1/GPs/" + objid, {
                 method: "put",
                 headers: {
                     'Accept': 'application/json',
@@ -59,14 +58,14 @@ $(document).ready(function() {
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
                     //"user": "user1",
-                    "name": document.getElementById('gpname').value,
-                    "address": document.getElementById('gpaddress').value,
-                    "borough": document.getElementById('gpborough').value,
-                    "telephone": document.getElementById('gptelephone').value,
-                    "maxcapacity": document.getElementById('gpmaxcapacity').value,
-                    "currentcapacity": document.getElementById('gpcurrentcapacity').value,
-                    "status": document.getElementById('gpstatus').value,
-                    "admin": document.getElementById('gpadmin').value
+                    "name": document.getElementById('name').value,
+                    "address": document.getElementById('address').value,
+                    "borough": document.getElementById('borough').value,
+                    "telephone": document.getElementById('telephone').value,
+                    "maxcapacity": document.getElementById('maxcapacity').value,
+                    "currentcapacity": document.getElementById('currentcapacity').value,
+                    "status": document.getElementById('status').value,
+                    "admin": document.getElementById('admin').value
                 })
                 })
                 .then( (response) => { 

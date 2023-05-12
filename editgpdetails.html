@@ -29,7 +29,7 @@
     <li><a href="registergp.html">Register for GP</a></li>
     <li><a href="myrequests.html">My Requests</a></li>
     <li><a href="editgpdetails.html">View & Update GP Details</a></li>
-    <li><a href="myrequests.html">Intray / Inbox (GP Admin)</a></li>
+    <li><a href="intray.html">Intray / Inbox (GP Admin)</a></li>
     <li><a href="feedback.html">Feedback</a></li>
     <li><a href="inboxnhsadmin.html">Intray / Inbox (NHS Admin)</a></li>
   </ul>
@@ -49,16 +49,16 @@
              <div id="tab-1" class="tab-pane" role="tabpanel">
               <table>
                 <tr>
-                  <td><label for="gpname">GP Name:</label></td>
-                  <td><input type="text" id="gpname" name="gpname"></td>
+                  <td><label for="name">GP Name:</label></td>
+                  <td><input type="text" id="name" name="name"></td>
                 </tr>
                 <tr>
-                  <td><label for="gpaddress">Address:</label></td>
-                  <td><textarea id="gpaddress" name="gpaddress" rows="7" cols="100"></textarea></td>
+                  <td><label for="address">Address:</label></td>
+                  <td><textarea id="address" name="address" rows="7" cols="100"></textarea></td>
                 </tr>
                 <tr>
-                  <td><label for="gpborough">Borough:</label></td>
-                  <td><select name="gpborough" id="gpborough">
+                  <td><label for="borough">Borough:</label></td>
+                  <td><select name="borough" id="borough">
                     <option value="Barking and Dagenham">Barking and Dagenham</option>
                     <option value="Barnet">Barnet</option>
                     <option value="Bexley">Bexley</option>
@@ -82,32 +82,32 @@
                   </select><br /></td>
                 </tr>
                 <tr>
-                  <td><label for="gptelephone">Telephone:</label></td>
-                  <td><input type="text" id="gptelephone" name="gptelephone"></textarea></td>
+                  <td><label for="telephone">Telephone:</label></td>
+                  <td><input type="text" id="telephone" name="telephone"></textarea></td>
                 </tr>
                 <tr>
-                  <td><label for="gpmaxcapacity">Max Capacity:</label></td>
-                  <td><input type="text" id="gpmaxcapacity" name="gpmaxcapacity"></textarea></td>
+                  <td><label for="maxcapacity">Max Capacity:</label></td>
+                  <td><input type="text" id="maxcapacity" name="maxcapacity"></textarea></td>
                 </tr>
                 <tr>
-                  <td><label for="gpcurrentcapacity">Current Capacity:</label></td>
-                  <td><input type="text" id="gpcurrentcapacity" name="gpcurrentcapacity" disabled></textarea></td>
+                  <td><label for="currentcapacity">Current Capacity:</label></td>
+                  <td><input type="text" id="currentcapacity" name="currentcapacity" disabled></textarea></td>
                 </tr>
                 <tr>
-                  <td><label for="gpstatus">Status:</label></td>
-                  <td><select name="gpstatus" id="gpstatus">
+                  <td><label for="status">Status:</label></td>
+                  <td><select name="status" id="status">
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                     <option value="Permanently Closed">Permanently Closed</option>
                   </select><br /></td>
                 </tr>
                 <tr>
-                  <td><label for="gpadmin">Admin In-Charge:</label></td>
-                  <td><input type="text" id="gpadmin" name="gpadmin"></textarea></td>
+                  <td><label for="admin">Admin In-Charge:</label></td>
+                  <td><input type="text" id="admin" name="admin"></textarea></td>
                 </tr>
                 <tr>
-                  <td><label for="gplastModifiedDate">Last Modified Date:</label></td>
-                  <td><input type="text" id="gplastModifiedDate" name="gplastModifiedDate" disabled></textarea></td>
+                  <td><label for="lastModifiedDate">Last Modified Date:</label></td>
+                  <td><input type="text" id="lastModifiedDate" name="lastModifiedDate" disabled></textarea></td>
                 </tr>
                 <input type="hidden" id="objid" name="objid" value="">
               </table>
