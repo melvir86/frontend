@@ -41,7 +41,7 @@ $(document).ready(function() {
             { "data": "status", "name": "Status", "title": "Status1" },
             { "data": "", "name": "", "title": "Action",
             render: function (data, type, row, meta) {
-                if (row.status == "Pending") {
+                if (row.status == "Submitted") {
                   return '<button>Edit</button>';
                 }
                 else {
@@ -77,7 +77,7 @@ $(document).ready(function() {
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
                     "user": "user1",
-                    "user": "Pending",
+                    "user": "Submitted",
                     "basic_forename": document.getElementById('basic_forename').value,
                     "basic_surname": document.getElementById('basic_surname').value,
                     "basic_dob": document.getElementById('basic_dob').value,
