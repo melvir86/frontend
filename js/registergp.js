@@ -79,7 +79,7 @@ $(document).ready(function() {
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
                     "user": "user1",
-                    "user": "Submitted",
+                    "status": "Submitted",
                     "basic_forename": document.getElementById('basic_forename').value,
                     "basic_surname": document.getElementById('basic_surname').value,
                     "basic_dob": document.getElementById('basic_dob').value,
@@ -144,7 +144,10 @@ $(document).ready(function() {
                 $.Toast("Failure!","You have not submitted your feeeback", "error", options); 
                 }
                 else {
-                $.Toast("Success!","You have submitted your GP Registration", "success", options);  
+                    $.Toast("Success!","You have updated your GP registration request", "success", options);
+                    setTimeout(function () {
+                        window.location.href = "registergp.html"; //will redirect back to registergp page
+                     }, 5000); //will call the function after 5 secs
                 }
 
                 //return response.json();
