@@ -299,11 +299,6 @@ $(document).ready(function() {
     
         });
 
-        //function for cancel feedback handled by jquery
-        $("#cancelRegistration").click(function() {
-            window.location.href = "index.html";  
-        });
-
 $(".sidemenu").fly_sidemenu();
 
 $('#smarttab').smartTab({
