@@ -5,6 +5,40 @@ $(document).ready(function() {
     //console.log(objid);
 
     //function to retrieve feedbacks on main feedback page load
+    fetch('http://localhost:8082/api/v1/Registrations/registered/user?' + new URLSearchParams({
+        "user": 'user1',
+    }))
+    .then(response => response.json())
+    .then(data => {
+    console.log(data) // access json.body here
+    //do something awesome that makes the world a better place
+    //console.log(response.json());
+    //console.log(JSON.stringify(response.json()));
+    //console.log(response.status); // Will show you the status
+    //console.log(json.body); // Will show you the status
+
+    var options = {
+        position_class:"toast-top-right",
+        has_progress:true,
+    }
+
+    if (!data) {
+    //throw new Error("HTTP status " + response.status);
+    $.Toast("Failure!","Error in retrieving your registration details", "error", options); 
+    }
+    else {
+
+        $.each( data, function( key, val ) {
+            //forms html variable by appending the result set data using key value pairs from the returned json
+            $('#appointment_gp').append($('<option></option>').val(val.gp_primary).html(val.gp_primary));
+            $('#appointment_gp').append($('<option></option>').val(val.gp_secondary).html(val.gp_secondary));
+        });
+
+    }
+    //return response.json();
+    });
+
+    //function to retrieve feedbacks on main feedback page load
     fetch('http://localhost:8084/api/v1/Appointments/user?' + new URLSearchParams({
         "user": 'user1',
         "status": "Submitted",
@@ -36,9 +70,9 @@ $(document).ready(function() {
             { "data": "lastModifiedDate", "name": "Last Modified Date", "title": "Last Modified Date" },
             { "data": "appointment_type", "name": "Appointment Type", "title": "Appointment Type" },
             { "data": "appointment_symptom", "name": "Symptom", "title": "Symptom" },
-            { "data": "appointment_duration", "name": "Duration", "title": "Duration" },
             { "data": "appointment_doctor", "name": "Preferred Doctor", "title": "Preferred Doctor" },
             { "data": "status", "name": "Status", "title": "Status" },
+            { "data": "appointment_datetime", "name": "Scheduled Slot", "title": "Scheduled Slot" },
             { "data": "", "name": "", "title": "Action",
             render: function (data, type, row, meta) {
                 if (row.status == "Submitted" || row.status == "Resubmitted" || row.status == "Information request by GP") {
@@ -80,6 +114,7 @@ $(document).ready(function() {
                 body: JSON.stringify({
                     "user": "user1",
                     "status": "Submitted",
+                    "appointment_gp": document.getElementById('appointment_gp').value,
                     "appointment_type": document.getElementById('appointment_type').value,
                     "appointment_symptom": document.getElementById('appointment_symptom').value,
                     "appointment_cause": document.getElementById('appointment_cause').value,

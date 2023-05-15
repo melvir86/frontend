@@ -8,7 +8,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/editappointment.js"></script>
+  <script type="text/javascript" src="js/acceptappointmentrequests.js"></script>
   <script type="text/javascript" src="js/jquery.fly_sidemenu.js"></script>
 
   <link href='css/fly_sidemenu.css' rel='stylesheet' type='text/css'>
@@ -36,13 +36,7 @@
   </ul>
   <div class="pointer"></div>
 
-  <h2>Update or Delete your GP Appointment request</h2>
-
-  <br />
-  <label for="gp_comments">GP Admin's Comments:</label>
-  <textarea id="gp_comments" name="gp_comments" rows="4" cols="50" disabled></textarea>
-  <br />
-  <br />
+  <h2>Accept/Reject/Request further information from Patient</h2>
 
         <div id="smarttab">
           <ul class="nav">
@@ -138,12 +132,22 @@
                   </td>
                 </tr>
               </table>
+              <hr>
               <br />
               <div id="error" style="color:red"></div>
               <br />
+              <label for="gp_comments">GP Admin's Comments:</label>
+              <textarea id="gp_comments" name="gp_comments" rows="4" cols="50"></textarea>
+              <br />
+              <br />
+              <label for="appointment_datetime">Scheduled Date & Time:</label>
+              <input type="datetime-local" id="appointment_datetime" name="appointment_datetime">
+              <br />
+              <br />
               <input type="button" id="cancel" value="Cancel">
-              <input type="button" id="deleteAppointment" value="Delete">
-              <input type="button" id="updateAppointment" value="Submit">
+              <input type="button" id="requestinformation" value="Request More Information">
+              <input type="button" id="rejectAppointment" value="Reject">
+              <input type="button" id="acceptAppointment" value="Accept">
              </div>
           </div>
         </div>

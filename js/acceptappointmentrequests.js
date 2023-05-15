@@ -26,6 +26,8 @@ $(document).ready(function() {
     }
     else {
         //document.getElementById(data[0].type).checked = true;
+        $('#appointment_gp').append($('<option></option>').val(data[0].gp).html(data[0].gp));
+
         document.getElementById('appointment_type').value = data[0].appointment_type;
         document.getElementById('appointment_symptom').value = data[0].appointment_symptom;
         document.getElementById('appointment_cause').value = data[0].appointment_cause;
@@ -47,7 +49,7 @@ $(document).ready(function() {
 });
 
             //function for update feedback handled by jquery
-            $("#updateAppointment").click(function() {
+            $("#requestinformation").click(function() {
 
                 fetch("http://localhost:8084/api/v1/Appointments/" + objid, {
                 method: "put",
@@ -59,7 +61,7 @@ $(document).ready(function() {
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
                     "user": "user1",
-                    "status": "Resubmitted",
+                    "status": "Information request by GP",
                     "appointment_gp": document.getElementById('appointment_gp').value,
                     "appointment_type": document.getElementById('appointment_type').value,
                     "appointment_symptom": document.getElementById('appointment_symptom').value,
@@ -92,9 +94,9 @@ $(document).ready(function() {
                 $.Toast("Failure!","You have not updated your GP Appointment request", "error", options); 
                 }
                 else {
-                $.Toast("Success!","You have updated your GP Appointment request", "success", options);
+                    $.Toast("Success!","You have routed request back to patient to request more information", "success", options);
                 setTimeout(function () {
-                    window.location.href = "appointment.html"; //will redirect back to registergp page
+                    window.location.href = "intray.html"; //will redirect back to registergp page
                  }, 5000); //will call the function after 5 secs
                 }
 
@@ -102,48 +104,122 @@ $(document).ready(function() {
                 });
         });
 
-                //function for delete feedback handled by jquery
-                $("#deleteAppointment").click(function() {
+            //function for update feedback handled by jquery
+            $("#acceptAppointment").click(function() {
 
-                    fetch("http://localhost:8084/api/v1/Appointments/" + objid, {
-                    method: "delete",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-    
-                    //make sure to serialize your JSON body
-                    body: JSON.stringify({
-                    })
-                    })
-                    .then( (response) => { 
-                    //do something awesome that makes the world a better place
-                    //console.log(response.json());
-                    console.log(response.status); // Will show you the status
-    
-                    var options = {
-                        position_class:"toast-top-right",
-                        has_progress:true,
-                    }
-    
-                    if (!response.ok) {
-                    throw new Error("HTTP status " + response.status);
-                    $.Toast("Failure!","You have not deleted your registration", "error", options); 
-                    }
-                    else {
-                        $.Toast("Success!","You have deleted your GP Appointment request", "success", options);
-                        setTimeout(function () {
-                            window.location.href = "appointment.html"; //will redirect back to registergp page
-                         }, 5000); //will call the function after 5 secs
-                        }
-    
-                    //return response.json();
-                    });
-            });
+                fetch("http://localhost:8084/api/v1/Appointments/" + objid, {
+                method: "put",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+
+                //make sure to serialize your JSON body
+                body: JSON.stringify({
+                    "user": "user1",
+                    "status": "Accepted",
+                    "appointment_gp": document.getElementById('appointment_gp').value,
+                    "appointment_type": document.getElementById('appointment_type').value,
+                    "appointment_symptom": document.getElementById('appointment_symptom').value,
+                    "appointment_cause": document.getElementById('appointment_cause').value,
+                    "appointment_worry": document.getElementById('appointment_worry').value,
+                    "appointment_duration": document.getElementById('appointment_duration').value,
+                    "appointment_symptomstatus": document.getElementById('appointment_symptomstatus').value,
+                    "appointment_improvement": document.getElementById('appointment_improvement').value,
+                    "appointment_doctor": document.getElementById('appointment_doctor').value,
+                    "appointment_datetime": document.getElementById('appointment_datetime').value,
+
+                    "consent_contact": document.querySelector('input[name="consent_contact"]:checked').value,
+                    "consent_sms": document.querySelector('input[name="consent_sms"]:checked').value,
+                    "consent_email": document.querySelector('input[name="consent_email"]:checked').value,
+
+                    "gp_comments": document.getElementById('gp_comments').value
+                })
+                })
+                .then( (response) => { 
+                //do something awesome that makes the world a better place
+                console.log(response.json());
+                console.log(response.status); // Will show you the status
+
+                var options = {
+                    position_class:"toast-top-right",
+                    has_progress:true,
+                }
+
+                if (!response.ok) {
+                throw new Error("HTTP status " + response.status);
+                $.Toast("Failure!","You have not updated your GP Appointment request", "error", options); 
+                }
+                else {
+                    $.Toast("Success!","You have accepted the GP Appointment request", "success", options);
+                setTimeout(function () {
+                    window.location.href = "intray.html"; //will redirect back to registergp page
+                 }, 5000); //will call the function after 5 secs
+                }
+
+                //return response.json();
+                });
+        });
+
+            //function for update feedback handled by jquery
+            $("#rejectAppointment").click(function() {
+
+                fetch("http://localhost:8084/api/v1/Appointments/" + objid, {
+                method: "put",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+
+                //make sure to serialize your JSON body
+                body: JSON.stringify({
+                    "user": "user1",
+                    "status": "Rejected",
+                    "appointment_gp": document.getElementById('appointment_gp').value,
+                    "appointment_type": document.getElementById('appointment_type').value,
+                    "appointment_symptom": document.getElementById('appointment_symptom').value,
+                    "appointment_cause": document.getElementById('appointment_cause').value,
+                    "appointment_worry": document.getElementById('appointment_worry').value,
+                    "appointment_duration": document.getElementById('appointment_duration').value,
+                    "appointment_symptomstatus": document.getElementById('appointment_symptomstatus').value,
+                    "appointment_improvement": document.getElementById('appointment_improvement').value,
+                    "appointment_doctor": document.getElementById('appointment_doctor').value,
+
+                    "consent_contact": document.querySelector('input[name="consent_contact"]:checked').value,
+                    "consent_sms": document.querySelector('input[name="consent_sms"]:checked').value,
+                    "consent_email": document.querySelector('input[name="consent_email"]:checked').value,
+
+                    "gp_comments": document.getElementById('gp_comments').value
+                })
+                })
+                .then( (response) => { 
+                //do something awesome that makes the world a better place
+                console.log(response.json());
+                console.log(response.status); // Will show you the status
+
+                var options = {
+                    position_class:"toast-top-right",
+                    has_progress:true,
+                }
+
+                if (!response.ok) {
+                throw new Error("HTTP status " + response.status);
+                $.Toast("Failure!","You have not updated your GP Appointment request", "error", options); 
+                }
+                else {
+                    $.Toast("Success!","You have rejected the GP Appointment request", "success", options);
+                setTimeout(function () {
+                    window.location.href = "intray.html"; //will redirect back to registergp page
+                 }, 5000); //will call the function after 5 secs
+                }
+
+                //return response.json();
+                });
+        });
 
                  //function for cancel feedback handled by jquery
                 $("#cancel").click(function() {
-                    window.location.href = "appointment.html";  
+                    window.location.href = "intray.html";  
             });
 
 $(".sidemenu").fly_sidemenu();

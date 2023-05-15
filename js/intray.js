@@ -24,6 +24,7 @@ $(document).ready(function() {
     $.Toast("Failure!","Error in retrieving your GP capacity details", "error", options); 
     }
     else {
+    document.getElementById('name').value = data[0].name;
     document.getElementById('maxcapacity').value = data[0].maxcapacity;
     document.getElementById('currentcapacity').value = data[0].currentcapacity;
     document.getElementById('remainingcapacity').value = data[0].maxcapacity - data[0].currentcapacity;
@@ -61,10 +62,10 @@ $(document).ready(function() {
             data: data,
             "columns": [
             { "data": "_id", "name": "Id", "title": "Id", "visible": false },
-            { "data": "createdDate", "name": "Created Date", "title": "Created Date" },
-            { "data": "lastModifiedDate", "name": "Last Modified Date", "title": "Last Modified Date" },
             { "data": "basic_forename", "name": "Forename", "title": "Forename" },
             { "data": "basic_surname", "name": "Surname", "title": "Surname" },
+            { "data": "createdDate", "name": "Created Date", "title": "Created Date" },
+            { "data": "lastModifiedDate", "name": "Last Modified Date", "title": "Last Modified Date" },
             { "data": "gp_borough", "name": "Borough", "title": "Borough" },
             { "data": "gp_primary", "name": "Primary GP", "title": "Primary GP" },
             { "data": "status", "name": "Status", "title": "Status" },
@@ -90,6 +91,66 @@ $(document).ready(function() {
     });
 
     $.Toast("Success!","You have retrieved all registration requests", "success", options);  
+    }
+    //return response.json();
+});
+
+    //function to retrieve feedbacks on main feedback page load
+    fetch('http://localhost:8084/api/v1/Appointments' + new URLSearchParams({
+        //"status": "Pending",
+    }))
+    .then(response => response.json())
+    .then(data => {
+    console.log(data) // access json.body here
+    //do something awesome that makes the world a better place
+    //console.log(response.json());
+    //console.log(JSON.stringify(response.json()));
+    //console.log(response.status); // Will show you the status
+    //console.log(json.body); // Will show you the status
+
+    var options = {
+        position_class:"toast-top-right",
+        has_progress:true,
+    }
+
+    if (!data) {
+    //throw new Error("HTTP status " + response.status);
+    $.Toast("Failure!","Error in retrieving appointment requests", "error", options); 
+    }
+    else {
+        var table = $('#appointmentList').DataTable( {
+            data: data,
+            "columns": [
+            { "data": "_id", "name": "Id", "title": "Id", "visible": false },
+            { "data": "user", "name": "Name", "title": "Name" },
+            { "data": "createdDate", "name": "Created Date", "title": "Created Date" },
+            { "data": "lastModifiedDate", "name": "Last Modified Date", "title": "Last Modified Date" },
+            { "data": "appointment_type", "name": "Appointment Type", "title": "Appointment Type" },
+            { "data": "appointment_symptom", "name": "Symptom", "title": "Symptom" },
+            { "data": "appointment_doctor", "name": "Preferred Doctor", "title": "Preferred Doctor" },
+            { "data": "status", "name": "Status", "title": "Status" },
+            { "data": "appointment_datetime", "name": "Scheduled Slot", "title": "Scheduled Slot" },
+            { "data": "", "name": "", "title": "Action",
+            render: function (data, type, row, meta) {
+                if (row.status == "Submitted" || row.status == "Resubmitted") {
+                  return '<button>View Details to Accept/Reject</button>';
+                }
+                else {
+                  return '<button disabled>View Details to Accept/Reject</button>';
+                }
+              }
+            },
+            ],
+    } );
+
+    $('#appointmentList tbody').on('click', 'button', function () {
+        var data = table.row($(this).parents('tr')).data();
+        console.log(data);
+        //alert("Parameter to pass to next page is: " + data._id);
+        window.location.href = "acceptappointmentrequests.html?id=" + data._id;
+    });
+
+    $.Toast("Success!","You have retrieved your appointments", "success", options);  
     }
     //return response.json();
 });

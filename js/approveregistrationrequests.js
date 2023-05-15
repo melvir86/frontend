@@ -105,7 +105,7 @@ $(document).ready(function() {
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
                     "user": "user1",
-                    "status": "Approved",
+                    "status": "Registered",
                     "basic_forename": document.getElementById('basic_forename').value,
                     "basic_surname": document.getElementById('basic_surname').value,
                     "basic_dob": document.getElementById('basic_dob').value,
