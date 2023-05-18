@@ -92,7 +92,10 @@
                         $.Toast("Failure!","You have not submitted your feeeback", "error", options); 
                         }
                         else {
-                        $.Toast("Success!","You have submitted your feeeback", "success", options);  
+                            $.Toast("Success!","You have submitted your feedback", "success", options);
+                        setTimeout(function () {
+                            window.location.href = "feedback.html"; //will redirect back to registergp page
+                         }, 5000); //will call the function after 5 secs
                         }
   
                         //return response.json();

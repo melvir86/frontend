@@ -37,7 +37,7 @@ $(document).ready(function() {
             { "data": "basic_forename", "name": "Forename", "title": "Forename" },
             { "data": "basic_surname", "name": "Surname", "title": "Surname" },
             { "data": "gp_borough", "name": "Borough", "title": "Borough" },
-            { "data": "gp_primary", "name": "Primary GP", "title": "Primary GP" },
+            { "data": "gpprimary", "name": "Primary GP", "title": "Primary GP" },
             { "data": "status", "name": "Status", "title": "Status" },
             { "data": "", "name": "", "title": "Action",
             render: function (data, type, row, meta) {

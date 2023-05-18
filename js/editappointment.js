@@ -25,6 +25,8 @@ $(document).ready(function() {
     $.Toast("Failure!","Error in retrieving your appointment details", "error", options); 
     }
     else {
+        $('#appointment_gp').append($('<option></option>').val(data[0].gp).html(data[0].gp));
+        
         //document.getElementById(data[0].type).checked = true;
         document.getElementById('appointment_type').value = data[0].appointment_type;
         document.getElementById('appointment_symptom').value = data[0].appointment_symptom;
@@ -60,7 +62,7 @@ $(document).ready(function() {
                 body: JSON.stringify({
                     "user": "user1",
                     "status": "Resubmitted",
-                    "appointment_gp": document.getElementById('appointment_gp').value,
+                    "gp": document.getElementById('appointment_gp').value,
                     "appointment_type": document.getElementById('appointment_type').value,
                     "appointment_symptom": document.getElementById('appointment_symptom').value,
                     "appointment_cause": document.getElementById('appointment_cause').value,

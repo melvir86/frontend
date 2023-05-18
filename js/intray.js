@@ -24,6 +24,7 @@ $(document).ready(function() {
     $.Toast("Failure!","Error in retrieving your GP capacity details", "error", options); 
     }
     else {
+    gp_primary = data[0].name;
     document.getElementById('name').value = data[0].name;
     document.getElementById('maxcapacity').value = data[0].maxcapacity;
     document.getElementById('currentcapacity').value = data[0].currentcapacity;
@@ -31,13 +32,10 @@ $(document).ready(function() {
     document.getElementById('gpid').value = data[0]._id;
     
     //$.Toast("Success!","You have retrieved your gp detail", "success", options);  
-    }
-    //return response.json();
-    });
 
-    //function to retrieve feedbacks on main feedback page load
-    fetch('http://localhost:8082/api/v1/Registrations' + new URLSearchParams({
-        //"status": "Pending",
+    //function to concurrently retrieve registrations based on pulled primary gp information
+    fetch('http://localhost:8082/api/v1/Registrations/gp_primary?' + new URLSearchParams({
+        "gp_primary": gp_primary,
     }))
     .then(response => response.json())
     .then(data => {
@@ -67,7 +65,7 @@ $(document).ready(function() {
             { "data": "createdDate", "name": "Created Date", "title": "Created Date" },
             { "data": "lastModifiedDate", "name": "Last Modified Date", "title": "Last Modified Date" },
             { "data": "gp_borough", "name": "Borough", "title": "Borough" },
-            { "data": "gp_primary", "name": "Primary GP", "title": "Primary GP" },
+            { "data": "gpprimary", "name": "Primary GP", "title": "Primary GP" },
             { "data": "status", "name": "Status", "title": "Status" },
             { "data": "", "name": "", "title": "Action",
             render: function (data, type, row, meta) {
@@ -90,14 +88,12 @@ $(document).ready(function() {
         window.location.href = "approveregistrationrequests.html?id=" + data._id + "&gpid=" + document.getElementById('gpid').value + "&capacity=" + document.getElementById('currentcapacity').value;
     });
 
-    $.Toast("Success!","You have retrieved all registration requests", "success", options);  
+    //$.Toast("Success!","You have retrieved all registration requests", "success", options);  
     }
-    //return response.json();
-});
 
-    //function to retrieve feedbacks on main feedback page load
-    fetch('http://localhost:8084/api/v1/Appointments' + new URLSearchParams({
-        //"status": "Pending",
+    //function to concurrently retrieve appointments based on pulled primary gp information
+    fetch('http://localhost:8084/api/v1/Appointments/gp?' + new URLSearchParams({
+        "gp": gp_primary,
     }))
     .then(response => response.json())
     .then(data => {
@@ -150,10 +146,16 @@ $(document).ready(function() {
         window.location.href = "acceptappointmentrequests.html?id=" + data._id;
     });
 
-    $.Toast("Success!","You have retrieved your appointments", "success", options);  
+    $.Toast("Success!","You have retrieved all your registration and appointment requests", "success", options);  
     }
     //return response.json();
 });
+
+});
+    }
+
+
+    });
 
 $(".sidemenu").fly_sidemenu();
 

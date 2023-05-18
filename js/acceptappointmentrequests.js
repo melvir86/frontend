@@ -62,7 +62,7 @@ $(document).ready(function() {
                 body: JSON.stringify({
                     "user": "user1",
                     "status": "Information request by GP",
-                    "appointment_gp": document.getElementById('appointment_gp').value,
+                    "gp": document.getElementById('appointment_gp').value,
                     "appointment_type": document.getElementById('appointment_type').value,
                     "appointment_symptom": document.getElementById('appointment_symptom').value,
                     "appointment_cause": document.getElementById('appointment_cause').value,
@@ -106,7 +106,7 @@ $(document).ready(function() {
 
             //function for update feedback handled by jquery
             $("#acceptAppointment").click(function() {
-
+                
                 fetch("http://localhost:8084/api/v1/Appointments/" + objid, {
                 method: "put",
                 headers: {
@@ -118,7 +118,7 @@ $(document).ready(function() {
                 body: JSON.stringify({
                     "user": "user1",
                     "status": "Accepted",
-                    "appointment_gp": document.getElementById('appointment_gp').value,
+                    "gp": document.getElementById('appointment_gp').value,
                     "appointment_type": document.getElementById('appointment_type').value,
                     "appointment_symptom": document.getElementById('appointment_symptom').value,
                     "appointment_cause": document.getElementById('appointment_cause').value,
@@ -175,7 +175,7 @@ $(document).ready(function() {
                 body: JSON.stringify({
                     "user": "user1",
                     "status": "Rejected",
-                    "appointment_gp": document.getElementById('appointment_gp').value,
+                    "gp": document.getElementById('appointment_gp').value,
                     "appointment_type": document.getElementById('appointment_type').value,
                     "appointment_symptom": document.getElementById('appointment_symptom').value,
                     "appointment_cause": document.getElementById('appointment_cause').value,
