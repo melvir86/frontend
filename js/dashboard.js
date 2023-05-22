@@ -1,5 +1,132 @@
 $(document).ready(function() {
 
+      //function to retrieve feedbacks on main feedback page load
+      fetch('http://localhost:8081/api/v1/GPs' + new URLSearchParams({
+      }))
+      .then(response => response.json())
+      .then(data => {
+      console.log(data) // access json.body here
+      //do something awesome that makes the world a better place
+      //console.log(response.json());
+      //console.log(JSON.stringify(response.json()));
+      //console.log(response.status); // Will show you the status
+      //console.log(json.body); // Will show you the status
+      
+      var options = {
+          position_class:"toast-top-right",
+          has_progress:true,
+      }
+      
+      if (!data) {
+      //throw new Error("HTTP status " + response.status);
+      $.Toast("Failure!","Error in retrieving your GP capacity details", "error", options); 
+      }
+      else {
+  
+        var boroughs = [];
+        var boroughscategories = [];
+        var boroughcurrentcapacity = 0;
+
+        var boroughremaining = [];
+        var boroughremainingcapacity = 0;
+
+        $.each( data, function( key, val ) {
+          //forms html variable by appending the result set data using key value pairs from the returned json
+          var found = false;
+          for(var i = 0; i < boroughs.length; i++) {
+              if (boroughs[i].borough == val.borough) {
+                  found = true;
+                  boroughcurrentcapacity = boroughs[i].y
+                  boroughs[i].y = boroughs[i].y + val.currentcapacity
+                  break;
+              }
+          }
+
+          if (found == false) {
+            const obj = {
+              borough: val.borough,
+              y: val.currentcapacity,
+              drilldown: val.borough
+            }
+            boroughs.push(obj);
+            boroughscategories.push(val.borough);
+          }
+
+          var foundremaining = false;
+          for(var i = 0; i < boroughremaining.length; i++) {
+              if (boroughremaining[i].remainingborough == val.borough) {
+                  foundremaining = true;
+                  boroughremainingcapacity = boroughremaining[i].y
+                  boroughremainingcapacity = parseInt(val.maxcapacity) - parseInt(val.currentcapacity)
+                  boroughremaining[i].y = boroughremaining[i].y + boroughremainingcapacity
+                  break;
+              }
+          }
+
+          if (foundremaining == false) {
+            boroughremainingcapacity = parseInt(val.maxcapacity) - parseInt(val.currentcapacity)
+            const objremaining = {
+              remainingborough: val.borough,
+              y: boroughremainingcapacity,
+              drilldown: val.borough
+            }
+            boroughremaining.push(objremaining);
+          }
+
+      });
+
+    console.log(boroughremaining);
+  
+      const chartOptions = Highcharts.chart('currentcontainer', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            categories: boroughscategories
+        },
+        yAxis: {
+            title: {
+                text: ''
+            }
+        },
+        tooltip: {
+          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>'
+      },
+        series: [{
+          name: 'Current GPs Load',
+          data: boroughs
+      }]
+    });
+
+    const chartOptions2 = Highcharts.chart('remainingcontainer', {
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: ''
+      },
+      xAxis: {
+          categories: boroughscategories
+      },
+      yAxis: {
+          //max: 100
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>'
+    },
+      series: [{
+        name: 'Remaining Capacity in Raw number terms',
+        data: boroughremaining
+    }]
+  });
+  
+      }
+
     //function to retrieve feedbacks on main feedback page load
     fetch('http://localhost:8081/api/v1/GPs/' + new URLSearchParams({
     }))
@@ -31,8 +158,18 @@ $(document).ready(function() {
 
       $.each( data, function( key, val ) {
         //forms html variable by appending the result set data using key value pairs from the returned json
-        currentseries.push(val.currentcapacity)
+        const currentcapabityobj = {name:val.name, borough:val.borough, y:val.currentcapacity};
+        currentseries.push(currentcapabityobj);
         currentcategories.push(val.name);
+
+        /*
+        data: [
+                {
+                    name: 'Chrome',
+                    y: 63.06,
+                    drilldown: 'Chrome'
+                }
+        */
     });
 
     $.each( data, function( key, val ) {
@@ -44,11 +181,12 @@ $(document).ready(function() {
 
       remainingcapacitypercentage = (parseInt(remainingcapacity) / parseInt(val.maxcapacity)) * 100;
 
-      remainingseries.push(remainingcapacitypercentage);
+      const remainingcapabityobj = {name:val.name, borough:val.borough, y:remainingcapacitypercentage};
+      remainingseries.push(remainingcapabityobj);
       remainingcategories.push(val.name);
   });
 
-    const chartOptions = Highcharts.chart('currentcontainer', {
+    const chartOptions = Highcharts.chart('currentcontainerbackup', {
       chart: {
           type: 'column'
       },
@@ -73,7 +211,7 @@ $(document).ready(function() {
     }]
   });
 
-  const chartOptions2 = Highcharts.chart('remainingcontainer', {
+  const chartOptions2 = Highcharts.chart('remainingcontainerbackup', {
     chart: {
         type: 'column'
     },
@@ -100,6 +238,7 @@ $(document).ready(function() {
 
     }
 
+  });
     });
 
 $(".sidemenu").fly_sidemenu();
