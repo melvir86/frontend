@@ -6,9 +6,22 @@
         console.log(username);
         console.log(role);
 
+        //redirect back to login page if cookie is empty
+        if (username === undefined) {
+            var options = {
+                position_class:"toast-top-right",
+                has_progress:true,
+            }
+            
+            $.Toast("Failure!","Your session has expired. You will be redirected to login again", "error", options); 
+            setTimeout(function () {
+                window.location.href = "login.html"; //will redirect back to registergp page
+             }, 3000); //will call the function after 5 secs
+        }
+
         $("#userinfo").empty();
         $("#userinfo").append("Welcome " + username + "! You are a " + role);
-        $("#userinfo").append("<br/><a href=index.html>Logout</a>");
+        $("#userinfo").append("<br/><a href=login.html>Logout</a>");
 
         if (role == "patient") {
             $("#sidemenu").empty();
