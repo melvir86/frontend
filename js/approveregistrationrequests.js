@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    var username = getCookie("name");
     //function to retrieve feedbacks on edit feedback page load
     var objid = (new URL(location.href)).searchParams.get('id');
     console.log(objid);
@@ -72,8 +73,8 @@ $(document).ready(function() {
         document.getElementById('profiling_ethnicgroup').value = data[0].profiling_ethnicgroup;
         
         document.getElementById('gp_borough').value = data[0].gp_borough;
-        $('#gp_primary').append(`<option value="${data[0].gp_primary}">
-        ${data[0].gp_primary}
+        $('#gp_primary').append(`<option value="${data[0].gpprimary}">
+        ${data[0].gpprimary}
         </option>`);
         $('#gp_secondary').append(`<option value="${data[0].gp_secondary}">
         ${data[0].gp_secondary}
@@ -104,7 +105,6 @@ $(document).ready(function() {
 
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
-                    "user": "user1",
                     "status": "Registered",
                     "basic_forename": document.getElementById('basic_forename').value,
                     "basic_surname": document.getElementById('basic_surname').value,
@@ -145,7 +145,7 @@ $(document).ready(function() {
                     "profiling_ethnicgroup": document.getElementById('profiling_ethnicgroup').value,
 
                     "gp_borough": document.getElementById('gp_borough').value,
-                    "gp_primary": document.getElementById('gp_primary').value,
+                    "gpprimary": document.getElementById('gp_primary').value,
                     "gp_secondary": document.getElementById('gp_secondary').value,
 
                     "consent_resident": document.querySelector('input[name="consent_resident"]:checked').value,
@@ -183,7 +183,6 @@ $(document).ready(function() {
 
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
-                    //"user": "user1",
                     "currentcapacity": currentcapacity,
                 })
                 })
@@ -225,7 +224,6 @@ $(document).ready(function() {
 
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
-                    "user": "user1",
                     "status": "Rejected",
                     "basic_forename": document.getElementById('basic_forename').value,
                     "basic_surname": document.getElementById('basic_surname').value,
@@ -266,7 +264,7 @@ $(document).ready(function() {
                     "profiling_ethnicgroup": document.getElementById('profiling_ethnicgroup').value,
 
                     "gp_borough": document.getElementById('gp_borough').value,
-                    "gp_primary": document.getElementById('gp_primary').value,
+                    "gpprimary": document.getElementById('gp_primary').value,
                     "gp_secondary": document.getElementById('gp_secondary').value,
 
                     "consent_resident": document.querySelector('input[name="consent_resident"]:checked').value,
@@ -313,7 +311,6 @@ $(document).ready(function() {
 
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
-                    "user": "user1",
                     "status": "Information request by GP",
                     "gp_comments": document.getElementById('gp_comments').value,
                     "basic_forename": document.getElementById('basic_forename').value,
@@ -355,7 +352,7 @@ $(document).ready(function() {
                     "profiling_ethnicgroup": document.getElementById('profiling_ethnicgroup').value,
 
                     "gp_borough": document.getElementById('gp_borough').value,
-                    "gp_primary": document.getElementById('gp_primary').value,
+                    "gpprimary": document.getElementById('gp_primary').value,
                     "gp_secondary": document.getElementById('gp_secondary').value,
 
                     "consent_resident": document.querySelector('input[name="consent_resident"]:checked').value,
@@ -478,5 +475,14 @@ $(document).ready(function() {
         $("#cancelRegistration").click(function() {
             window.location.href = "index.html";  
         });
+
+        function getCookie(name) {
+            let cookie = {};
+            document.cookie.split(';').forEach(function(el) {
+              let [k,v] = el.split('=');
+              cookie[k.trim()] = v;
+            })
+            return cookie[name];
+          }
 
 });

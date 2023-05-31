@@ -1,8 +1,9 @@
             $(document).ready(function() {
 
+            var username = getCookie("name");
             //function to retrieve feedbacks on main feedback page load
             fetch('http://localhost:8083/api/v1/feedbacks/user?' + new URLSearchParams({
-                "user": 'user1',
+                "user": username,
             }))
             .then(response => response.json())
             .then(data => {
@@ -71,7 +72,7 @@
 
                         //make sure to serialize your JSON body
                         body: JSON.stringify({
-                            "user": "user1",
+                            "user": username,
                             "type": document.querySelector('input[name="type"]:checked').value,
                             "feedback": document.getElementById('feedback').value,
                             "status": "Pending",
@@ -101,5 +102,14 @@
                         //return response.json();
                         });
                 });
+
+                function getCookie(name) {
+                    let cookie = {};
+                    document.cookie.split(';').forEach(function(el) {
+                      let [k,v] = el.split('=');
+                      cookie[k.trim()] = v;
+                    })
+                    return cookie[name];
+                  }
 
     });

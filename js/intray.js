@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
-    var admin = "User1";
+    var username = getCookie("name");
 
     //function to retrieve feedbacks on main feedback page load
-    fetch('http://localhost:8081/api/v1/GPs/' + admin + new URLSearchParams({
+    fetch('http://localhost:8081/api/v1/GPs/' + username + new URLSearchParams({
     }))
     .then(response => response.json())
     .then(data => {
@@ -156,5 +156,14 @@ $(document).ready(function() {
 
 
     });
+
+    function getCookie(name) {
+        let cookie = {};
+        document.cookie.split(';').forEach(function(el) {
+          let [k,v] = el.split('=');
+          cookie[k.trim()] = v;
+        })
+        return cookie[name];
+      }
 
 });

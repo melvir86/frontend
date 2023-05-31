@@ -1,11 +1,12 @@
 $(document).ready(function() {
 
+    var username = getCookie("name");
+
     //function to retrieve feedbacks on edit feedback page load
     //var objid = (new URL(location.href)).searchParams.get('id');
     //console.log(objid);
-    var admin = "User1";
 
-    fetch('http://localhost:8081/api/v1/GPs/' + admin + new URLSearchParams({
+    fetch('http://localhost:8081/api/v1/GPs/' + username + new URLSearchParams({
     }))
     .then(response => response.json())
     .then(data => {
@@ -46,7 +47,7 @@ $(document).ready(function() {
         $("#updateGP").click(function() {
                 var objid = document.getElementById('objid').value;
                 console.log(objid);
-                console.log(document.getElementById('gpname').value);
+                console.log(document.getElementById('name').value);
 
                 fetch("http://localhost:8081/api/v1/GPs/" + objid, {
                 method: "put",
@@ -57,7 +58,6 @@ $(document).ready(function() {
 
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
-                    //"user": "user1",
                     "name": document.getElementById('name').value,
                     "address": document.getElementById('address').value,
                     "borough": document.getElementById('borough').value,
@@ -94,5 +94,14 @@ $(document).ready(function() {
                 $("#cancelGP").click(function() {
                     window.location.href = "index.html";  
             });
+
+            function getCookie(name) {
+                let cookie = {};
+                document.cookie.split(';').forEach(function(el) {
+                  let [k,v] = el.split('=');
+                  cookie[k.trim()] = v;
+                })
+                return cookie[name];
+              }
 
 });

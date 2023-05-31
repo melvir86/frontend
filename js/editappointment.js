@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    var username = getCookie("name");
+    
     //function to retrieve feedbacks on edit feedback page load
     var objid = (new URL(location.href)).searchParams.get('id');
     console.log(objid);
@@ -60,7 +62,7 @@ $(document).ready(function() {
 
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
-                    "user": "user1",
+                    "user": username,
                     "status": "Resubmitted",
                     "gp": document.getElementById('appointment_gp').value,
                     "appointment_type": document.getElementById('appointment_type').value,
@@ -147,5 +149,14 @@ $(document).ready(function() {
                 $("#cancel").click(function() {
                     window.location.href = "appointment.html";  
             });
+
+            function getCookie(name) {
+                let cookie = {};
+                document.cookie.split(';').forEach(function(el) {
+                  let [k,v] = el.split('=');
+                  cookie[k.trim()] = v;
+                })
+                return cookie[name];
+              }
 
 });

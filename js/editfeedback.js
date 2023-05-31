@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    var username = getCookie("name");
     //function to retrieve feedbacks on edit feedback page load
     var objid = (new URL(location.href)).searchParams.get('id');
     console.log(objid);
@@ -8,7 +9,6 @@ $(document).ready(function() {
     }))
     .then(response => response.json())
     .then(data => {
-    console.log("edit page");
     console.log(data) // access json.body here
     //do something awesome that makes the world a better place
     //console.log(response.json());
@@ -48,7 +48,6 @@ $(document).ready(function() {
 
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
-                    "user": "user1",
                     "type": document.querySelector('input[name="type"]:checked').value,
                     "feedback": document.getElementById('feedback_edit').value,
                     "status": document.getElementById('status_edit').value,
@@ -69,7 +68,10 @@ $(document).ready(function() {
                 $.Toast("Failure!","You have not submitted your feeeback", "error", options); 
                 }
                 else {
-                $.Toast("Success!","You have updated your feeeback", "success", options);  
+                $.Toast("Success!","You have updated your feeeback", "success", options);
+                setTimeout(function () {
+                    window.location.href = "feedback.html"; //will redirect back to registergp page
+                 }, 5000); //will call the function after 5 secs
                 }
 
                 //return response.json();
@@ -121,5 +123,14 @@ $(document).ready(function() {
                 $("#cancelFeedback").click(function() {
                     window.location.href = "feedback.html";  
             });
-            
+
+            function getCookie(name) {
+                let cookie = {};
+                document.cookie.split(';').forEach(function(el) {
+                  let [k,v] = el.split('=');
+                  cookie[k.trim()] = v;
+                })
+                return cookie[name];
+              }
+
 });

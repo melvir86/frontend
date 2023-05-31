@@ -1,12 +1,14 @@
 $(document).ready(function() {
 
+    var username = getCookie("name");
+
     //function to retrieve feedbacks on edit feedback page load
     //var objid = (new URL(location.href)).searchParams.get('id');
     //console.log(objid);
 
     //function to retrieve feedbacks on main feedback page load
     fetch('http://localhost:8082/api/v1/Registrations/user?' + new URLSearchParams({
-        "user": 'user1',
+        "user": username,
         "status": "Pending",
     }))
     .then(response => response.json())
@@ -78,7 +80,7 @@ $(document).ready(function() {
 
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
-                    "user": "user1",
+                    "user": username,
                     "status": "Submitted",
                     "basic_forename": document.getElementById('basic_forename').value,
                     "basic_surname": document.getElementById('basic_surname').value,
@@ -119,7 +121,7 @@ $(document).ready(function() {
                     "profiling_ethnicgroup": document.getElementById('profiling_ethnicgroup').value,
 
                     "gp_borough": document.getElementById('gp_borough').value,
-                    "gp_primary": document.getElementById('gp_primary').value,
+                    "gpprimary": document.getElementById('gp_primary').value,
                     "gp_secondary": document.getElementById('gp_secondary').value,
 
                     "consent_resident": document.querySelector('input[name="consent_resident"]:checked').value,
@@ -144,7 +146,7 @@ $(document).ready(function() {
                 $.Toast("Failure!","You have not submitted your feeeback", "error", options); 
                 }
                 else {
-                    $.Toast("Success!","You have updated your GP registration request", "success", options);
+                    $.Toast("Success!","You have submitted your GP registration request", "success", options);
                     setTimeout(function () {
                         window.location.href = "registergp.html"; //will redirect back to registergp page
                      }, 5000); //will call the function after 5 secs
@@ -235,5 +237,14 @@ $(document).ready(function() {
         $("#cancelRegistration").click(function() {
             window.location.href = "index.html";  
         });
+
+        function getCookie(name) {
+            let cookie = {};
+            document.cookie.split(';').forEach(function(el) {
+              let [k,v] = el.split('=');
+              cookie[k.trim()] = v;
+            })
+            return cookie[name];
+          }
 
 });

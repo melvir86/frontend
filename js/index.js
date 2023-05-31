@@ -19,25 +19,30 @@
              }, 3000); //will call the function after 5 secs
         }
 
-        $("#userinfo").empty();
-        $("#userinfo").append("Welcome " + username + "! You are a " + role);
-        $("#userinfo").append("<br/><a href=login.html>Logout</a>");
+        $("#logout").empty();
+        $("#logout").append("<br/><a href=login.html>Logout</a>");
+        //$("#page-container").empty();
+        $("#page-container").append("Welcome <b>" + username + "</b>! Your role is as a <b>" + role + "</b>");
+
 
         if (role == "patient") {
             $("#sidemenu").empty();
-            $("#sidemenu").append("<li><a href=registergp.html>Register for GP</a></li> \
+            $("#sidemenu").append("<li><a href=index.html>Announcements</a></li> \
+            <li><a href=registergp.html>Register for GP</a></li> \
             <li><a href=appointment.html>Book GP Appointment</a></li> \
             <li><a href=feedback.html>Feedback</a></li>");
         }
         else if (role == "gpadmin") {
             $("#sidemenu").empty();
-            $("#sidemenu").append("<li><a href=editgpdetails.html>View & Update GP Details</a></li> \
+            $("#sidemenu").append("<li><a href=index.html>Announcements</a></li> \
+            <li><a href=editgpdetails.html>View & Update GP Details</a></li> \
             <li><a href=intray.html>Intray / Inbox</a></li> \
             <li><a href=feedback.html>Feedback</a></li>");
         }
         else {
             $("#sidemenu").empty();
-            $("#sidemenu").append("<li><a href=feedback.html>Feedback</a></li> \
+            $("#sidemenu").append("<li><a href=index.html>Announcements</a></li> \
+            <li><a href=feedback.html>Feedback</a></li> \
             <li><a href=dashboard.html>View Statistics Dashboard</a></li>");
         }
 

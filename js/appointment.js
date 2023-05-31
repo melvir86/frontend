@@ -1,12 +1,10 @@
 $(document).ready(function() {
 
-    //function to retrieve feedbacks on edit feedback page load
-    //var objid = (new URL(location.href)).searchParams.get('id');
-    //console.log(objid);
+    var username = getCookie("name");
 
     //function to retrieve feedbacks on main feedback page load
     fetch('http://localhost:8082/api/v1/Registrations/registered/user?' + new URLSearchParams({
-        "user": 'user1',
+        "user": username,
     }))
     .then(response => response.json())
     .then(data => {
@@ -30,7 +28,7 @@ $(document).ready(function() {
 
         $.each( data, function( key, val ) {
             //forms html variable by appending the result set data using key value pairs from the returned json
-            $('#appointment_gp').append($('<option></option>').val(val.gp_primary).html(val.gp_primary));
+            $('#appointment_gp').append($('<option></option>').val(val.gpprimary).html(val.gpprimary));
             $('#appointment_gp').append($('<option></option>').val(val.gp_secondary).html(val.gp_secondary));
         });
 
@@ -40,7 +38,7 @@ $(document).ready(function() {
 
     //function to retrieve feedbacks on main feedback page load
     fetch('http://localhost:8084/api/v1/Appointments/user?' + new URLSearchParams({
-        "user": 'user1',
+        "user": username,
         "status": "Submitted",
     }))
     .then(response => response.json())
@@ -112,7 +110,7 @@ $(document).ready(function() {
 
                 //make sure to serialize your JSON body
                 body: JSON.stringify({
-                    "user": "user1",
+                    "user": username,
                     "status": "Submitted",
                     "gp": document.getElementById('appointment_gp').value,
                     "appointment_type": document.getElementById('appointment_type').value,
@@ -158,5 +156,14 @@ $(document).ready(function() {
         $("#cancelAppointment").click(function() {
             window.location.href = "index.html";  
         });
+
+        function getCookie(name) {
+            let cookie = {};
+            document.cookie.split(';').forEach(function(el) {
+              let [k,v] = el.split('=');
+              cookie[k.trim()] = v;
+            })
+            return cookie[name];
+          }
 
 });
