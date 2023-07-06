@@ -42,7 +42,7 @@
         else {
             $("#sidemenu").empty();
             $("#sidemenu").append("<li><a href=index.html>Announcements</a></li> \
-            <li><a href=feedback.html>Feedback</a></li> \
+            <li><a href=nhsfeedback.html>View all Feedback</a></li> \
             <li><a href=dashboard.html>View Statistics Dashboard</a></li>");
         }
 

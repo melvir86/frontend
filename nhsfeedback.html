@@ -8,7 +8,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/feedback.js"></script>
+  <script type="text/javascript" src="js/nhsfeedback.js"></script>
   <script type="text/javascript" src="js/jquery.fly_sidemenu.js"></script>
 
   <link href='css/fly_sidemenu.css' rel='stylesheet' type='text/css'>
@@ -44,38 +44,6 @@
 
           <h2>View Submitted Feedbacks</h2>
           <table id="feedbackList" class="display" width="100%"></table>
-          
-
-          <div class="tab-content">
-            <h2>Submit New Feedback</h2>
-            <form>
-             <div id="tab-1" class="tab-pane" role="tabpanel">
-              <table>
-                <tr>
-                  <td><label for="type">Feedback On:</label></td>
-                  <td>
-                        <input type="radio" id="system" name="type" value="system" required>
-                        <label for="system">System</label>
-                        <input type="radio" id="functionality" name="type" value="functionality">
-                        <label for="functionality">Functionality</label>
-                        <input type="radio" id="gp" name="type" value="gp">
-                        <label for="gp">GP</label>
-                        <input type="radio" id="person" name="type" value="person">
-                        <label for="person">Person</label>
-                  </td>
-                </tr>
-                <tr>
-                  <td><label for="feedback">Feedback:</label></td>
-                  <td><textarea id="feedback" name="feedback" rows="7" cols="100" required></textarea></td>
-                </tr>
-              </table>
-              <br />
-              <div id="error" style="color:red"></div>
-              <br />
-              <input type="button" id="cancelFeedback" value="Cancel">
-              <input type="submit" id="submitFeedback" value="Submit">
-             </div>
-             <form>
           </div>
         </div>
 

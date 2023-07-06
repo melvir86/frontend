@@ -27,7 +27,7 @@ $(document).ready(function() {
 
     if (!data) {
     //throw new Error("HTTP status " + response.status);
-    $.Toast("Failure!","Error in retrieving your feedbacks", "error", options); 
+    $.Toast("Failure!","Error in retrieving your registrations", "error", options); 
     }
     else {
         var table = $('#registrationList').DataTable( {
@@ -63,7 +63,7 @@ $(document).ready(function() {
         window.location.href = "editregistergp.html?id=" + data._id;
     });
 
-    $.Toast("Success!","You have retrieved your feeebacks", "success", options);  
+    $.Toast("Success!","You have retrieved your registrations", "success", options);  
     }
     //return response.json();
 });
@@ -89,7 +89,7 @@ $(document).ready(function() {
                     "basic_weight": document.getElementById('basic_weight').value,
                     "basic_nhsnumber": document.getElementById('basic_nhsnumber').value,
                     "basic_country": document.getElementById('basic_country').value,
-                    "basic_gender": document.getElementById('basic_gender').value,
+                    "basic_gender": document.querySelector('input[name="basic_gender"]:checked').value,
                     "basic_address": document.getElementById('basic_address').value,
                     "basic_postcode": document.getElementById('basic_postcode').value,
                     "basic_email": document.getElementById('basic_email').value,

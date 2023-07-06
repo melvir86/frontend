@@ -34,7 +34,7 @@
   <br/>
 
   <h2>Update or Delete your GP Appointment request</h2>
-
+  <form>
   <br />
   <label for="gp_comments">GP Admin's Comments:</label>
   <textarea id="gp_comments" name="gp_comments" rows="4" cols="50" disabled></textarea>
@@ -110,27 +110,27 @@
                 <tr>
                   <td><label for="consent_contact">Do you consent to us contacting you for more information regarding scheduling the appointment?</label></td>
                   <td>
-                        <input type="radio" id="yes" name="consent_contact" value="yes">
+                        <input type="radio" id="yes" name="consent_contact" value="yes" required>
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="consent_contact" value="no">
+                        <input type="radio" id="no" name="consent_contact" value="no" required>
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
                   <td><label for="consent_sms">I give my consent to receive SMS text notifications for communication</label></td>
                   <td>
-                        <input type="radio" id="yes" name="consent_sms" value="yes">
+                        <input type="radio" id="yes" name="consent_sms" value="yes" required>
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="consent_sms" value="no">
+                        <input type="radio" id="no" name="consent_sms" value="no" required>
                         <label for="no">No</label>
                   </td>
                 </tr>
                 <tr>
                   <td><label for="consent_email">I give my consent to receive Email notifications for communication</label></td>
                   <td>
-                        <input type="radio" id="yes" name="consent_email" value="yes">
+                        <input type="radio" id="yes" name="consent_email" value="yes" required>
                         <label for="yes">Yes</label>
-                        <input type="radio" id="no" name="consent_email" value="no">
+                        <input type="radio" id="no" name="consent_email" value="no" required>
                         <label for="no">No</label>
                   </td>
                 </tr>
@@ -144,5 +144,6 @@
              </div>
           </div>
         </div>
+        </form>
   </body>
 </html>

@@ -41,7 +41,7 @@ $(document).ready(function() {
         document.getElementById('basic_weight').value = data[0].basic_weight;
         document.getElementById('basic_nhsnumber').value = data[0].basic_nhsnumber;
         document.getElementById('basic_country').value = data[0].basic_country;
-        document.getElementById('basic_gender').value = data[0].basic_gender;
+        $("input[name=basic_gender]").val([data[0].basic_gender]);
         document.getElementById('basic_address').value = data[0].basic_address;
         document.getElementById('basic_postcode').value = data[0].basic_postcode;
         document.getElementById('basic_email').value = data[0].basic_email;
@@ -113,7 +113,7 @@ $(document).ready(function() {
                     "basic_weight": document.getElementById('basic_weight').value,
                     "basic_nhsnumber": document.getElementById('basic_nhsnumber').value,
                     "basic_country": document.getElementById('basic_country').value,
-                    "basic_gender": document.getElementById('basic_gender').value,
+                    "basic_gender": document.querySelector('input[name="basic_gender"]:checked').value,
                     "basic_address": document.getElementById('basic_address').value,
                     "basic_postcode": document.getElementById('basic_postcode').value,
                     "basic_email": document.getElementById('basic_email').value,
@@ -232,7 +232,7 @@ $(document).ready(function() {
                     "basic_weight": document.getElementById('basic_weight').value,
                     "basic_nhsnumber": document.getElementById('basic_nhsnumber').value,
                     "basic_country": document.getElementById('basic_country').value,
-                    "basic_gender": document.getElementById('basic_gender').value,
+                    "basic_gender": document.querySelector('input[name="basic_gender"]:checked').value,
                     "basic_address": document.getElementById('basic_address').value,
                     "basic_postcode": document.getElementById('basic_postcode').value,
                     "basic_email": document.getElementById('basic_email').value,
@@ -320,7 +320,7 @@ $(document).ready(function() {
                     "basic_weight": document.getElementById('basic_weight').value,
                     "basic_nhsnumber": document.getElementById('basic_nhsnumber').value,
                     "basic_country": document.getElementById('basic_country').value,
-                    "basic_gender": document.getElementById('basic_gender').value,
+                    "basic_gender": document.querySelector('input[name="basic_gender"]:checked').value,
                     "basic_address": document.getElementById('basic_address').value,
                     "basic_postcode": document.getElementById('basic_postcode').value,
                     "basic_email": document.getElementById('basic_email').value,
