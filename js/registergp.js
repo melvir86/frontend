@@ -160,6 +160,9 @@ $(document).ready(function() {
     var borough = document.getElementById('gp_borough').value;
     console.log(borough);
 
+    $('#gp_primary').html("");
+    $('#gp_secondary').html("");
+
     fetch('http://localhost:8081/api/v1/GPs/borough/' + borough + new URLSearchParams({
     }))
     .then(response => response.json())
