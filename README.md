@@ -1,4 +1,4 @@
-# frontend for MedCentral application
+# Frontend for MedCentral application
 This is a shared code repository for the frontend of MedCentral application
 
 [For testers & public - how to run the program]
