@@ -12,6 +12,7 @@ This is a code repository for the frontend of MedCentral application
 4. Make sure the other required backend microservices of MedCentral are also up and running (ie. Authentication, Registration, Appointment, etc)
 5. Access the frontend application on your browser (http://localhost/frontend/login.html)
 6. Can use any of the test accounts pre-created with various roles
+   
    Patient Roles
    1. patient1 (username) Password123 (password)
    2. patient2 (username) Password123 (password)
